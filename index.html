@@ -1,0 +1,798 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Matematicas para Restaurantes</title>
+
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/lib/js/emojione.min.js" integrity="sha512-ibgn4qpJT55EG11zy1D65XS/7pgdgVxwPEwSSNDfH35Li2kEpNHKNs/lcmkwm5kaOaA1Ls1kdRSE6L/Qs7DE+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/css/emojione.min.css" integrity="sha512-stXuDISyaxZUf+TKKuWLknpyCteOwkgqm4eqXCRuryS1d9aqKj1VIuDRHevj4DC8voNTwY/mHklbyoRTkRdulQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+ 
+ <style>
+        html {
+            background: url(fondo.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body className='snippet-body'>
+    <div class="form__container">
+        <div class="title__container">
+            <h1>Matematicas para restaurantes</h1>
+            <p>Conviértete en un experto en la gestión financiera de tu restaurante</p>
+        </div>
+        <div class="body__container">
+            <div class="left__container">
+                <div class="side__titles">
+                    <div class="title__name">
+                        <h3>Rentabilidad</h3>
+                        <p>Meta de ingresos mensuales</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Tenedor promedio</h3>
+                        <p> valor promedio de consumo por cliente </p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Objetivos de clientes</h3>
+                        <p> Calculo de clientes por dia</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Porcentaje de costo </h3>
+                        <p>Costos de tu restaurant</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Sueldo mensual típico </h3>
+                        <p>Salario de empleado</p>
+                    </div>
+                    <div id="emoji-container">
+                        <div id="emoji"></div>
+                        <div id="emoji-text"></div>
+                      </div>
+                </div>
+                <div class="progress__bar__container">
+                    <ul>
+                        <li class="active" id="icon1">
+
+                            <ion-icon name="calculator-outline"></ion-icon>
+
+                        </li>
+                        <li id="icon2">
+                            <ion-icon name="restaurant-outline"></ion-icon>
+                        </li>
+                        <li id="icon3">
+                            <ion-icon name="calendar-outline"></ion-icon>
+
+                        </li>
+                        <li id="icon4">
+                            <ion-icon name="wallet-outline"></ion-icon>
+                        
+                        </li>
+                        <li id="icon5">
+                            <ion-icon name="people-outline"></ion-icon>
+
+                        
+                        </li>
+                    </ul>
+                    
+                </div>
+               
+            </div>
+            <div class="right__container">
+                <fieldset id="form1">
+                    <div class="sub__title__container ">
+                     
+                        <h2>¿Cuánto quieres ganar (rentabilidad) en el restaurante en
+                            un mes?</h2>
+                        <p>Ingresa tu objetivo de ingresos mensual</p>
+                    </div>
+
+                    <div class="input__container">
+                      <label for="rentabilidad"> Ingresos</label>
+                            <input  type="number" id="rentabilidad">
+                        <a class="nxt__btn" onclick="nextForm();"> Siguiente</a>
+                    </div>
+                    <p class="text-center page">Pag 1/5</p>
+                </fieldset>
+                <fieldset class="active__form" id="form2">
+                    <div class="sub__title__container">
+                    
+                        <h2>Para ganar $<span class="valor_ganancia"></span> al mes, tu restaurante debe vender $<span class="valor_venta"></span>  al mes.</h2>
+                        <p> Para entender cómo llegas a $<span class="valor_venta"></span> al mes, puedes manejar el tenedor “promedio de
+                            tu carta”. Cambia el valor en promedio que consume un cliente en tu local por cada
+                            visita cambiando el “tenedor promedio” aquí abajo.
+                        </p>
+                    </div>
+
+                    <div class="input__container">
+
+                        <label for="name">Tenedor Promedio</label>
+                        <input type="number" value="100" id="tenedor_promedio">
+
+                        <div class="buttons">
+                            <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                            <a class="nxt__btn" onclick="nextForm();">Siguiente</a>
+                        </div>
+                        <p class="text-center page">Pag 2/5</p>
+                    </div>
+                </fieldset>
+                <fieldset class="active__form" id="form3">
+                    <div class="sub__title__container">
+                       
+                        <h2>Objetivos por dia</h2>
+                        <p>En base a tu tenedor promedio, hemos calculado cuantos clientes debes atender cada
+                            día de la semana para que llegues al objetivo. Ajusta los valores para reflejar mejor la
+                            realidad de tu plan de restaurante.
+                        </p>
+                    </div>
+
+                    <div class="input__container">
+
+                        <table class="table">
+                            <thead>
+                                <th></th>
+                                <th> % de clientes a la semana</th>
+                                <th>Clientes por dia</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="L">Lunes</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMin" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMax" class="tick-slider-label">100%</div>
+                                                    <div id="weightValue" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgress" class="tick-slider-progress"></div>
+                                                <div id="weightTicks" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="porcentaje_m1"
+                                                    class="tick-slider-input"
+                                                    type="range"
+                                                    min="0"
+                                                    data-id="1"
+                                                    max="100"
+                                                    step="5"
+                                                    value="20"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicks"
+                                                    data-value-id="weightValue"
+                                                    data-progress-id="weightProgress"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMin"
+                                                    data-max-label-id="weightLabelMax"
+                                                />
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia"> 
+
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc1" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc1" class="tick-slider-label"></div>
+                                                    <div id="weightValuec1" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc1" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc1" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l1"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    value="100"
+                                                    data-id="1"
+
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc1"
+                                                    data-value-id="weightValuec1"
+                                                    data-progress-id="weightProgressc1"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc1"
+                                                    data-max-label-id="weightLabelMaxc1"
+                                                />
+                                            </div>
+                                        </div>
+
+                                    
+                                    
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td data-label="M">Martes</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMin2" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMax2" class="tick-slider-label">100%</div>
+                                                    <div id="weightValue2" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgress" class="tick-slider-progress"></div>
+                                                <div id="weightTicks2" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="porcentaje_m2"
+                                                    class="tick-slider-input"
+                                                    type="range"
+                                                    min="0"
+                                                    max="100"
+                                                    step="5"
+                                                    value="20"
+                                                    data-id="2"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicks2"
+                                                    data-value-id="weightValue2"
+                                                    data-progress-id="weightProgress"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMin2"
+                                                    data-max-label-id="weightLabelMax2"
+                                                />
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia">
+                                        
+                                   
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc2" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc2" class="tick-slider-label"></div>
+                                                    <div id="weightValuec2" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc2" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc2" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l2"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    value="100"
+                                                    data-id="2"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc2"
+                                                    data-value-id="weightValuec2"
+                                                    data-progress-id="weightProgressc2"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc2"
+                                                    data-max-label-id="weightLabelMaxc2"
+                                                />
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td data-label="M">Miercoles</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+
+                                            <div class="pt-input-group">
+
+                                                <div class="tick-slider">
+                                                
+                                                    <div class="tick-slider-value-container">
+                                                        <div id="weightLabelMin3" class="tick-slider-label">0</div>
+                                                        <div id="weightLabelMax3" class="tick-slider-label">100%</div>
+                                                        <div id="weightValue3" class="tick-slider-value"></div>
+                                                    </div>
+                                                    <div class="tick-slider-background"></div>
+                                                    <div id="weightProgress" class="tick-slider-progress"></div>
+                                                    <div id="weightTicks3" class="tick-slider-tick-container"></div>
+                                                    <input
+                                                        id="porcentaje_m3"
+                                                        class="tick-slider-input"
+                                                        type="range"
+                                                        min="0"
+                                                        max="100"
+                                                        step="5"
+                                                        value="20"
+                                                        data-id="3"
+                                                        data-tick-step="5"
+                                                        data-tick-id="weightTicks3"
+                                                        data-value-id="weightValue3"
+                                                        data-progress-id="weightProgress"
+                                                        data-handle-size="18"
+                                                        data-min-label-id="weightLabelMin3"
+                                                        data-max-label-id="weightLabelMax3"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia"> 
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc3" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc3" class="tick-slider-label"></div>
+                                                    <div id="weightValuec3" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc3" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc3" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l3"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    data-id="3"
+                                                    value="100"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc3"
+                                                    data-value-id="weightValuec3"
+                                                    data-progress-id="weightProgressc3"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc3"
+                                                    data-max-label-id="weightLabelMaxc3"
+                                                />
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td data-label="J">Jueves</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+
+                                            <div class="pt-input-group">
+
+                                                <div class="tick-slider">
+                                                
+                                                    <div class="tick-slider-value-container">
+                                                        <div id="weightLabelMin4" class="tick-slider-label">0</div>
+                                                        <div id="weightLabelMax4" class="tick-slider-label">100%</div>
+                                                        <div id="weightValue4" class="tick-slider-value"></div>
+                                                    </div>
+                                                    <div class="tick-slider-background"></div>
+                                                    <div id="weightProgress" class="tick-slider-progress"></div>
+                                                    <div id="weightTicks4" class="tick-slider-tick-container"></div>
+                                                    <input
+                                                        id="porcentaje_m4"
+                                                        class="tick-slider-input"
+                                                        type="range"
+                                                        min="0"
+                                                        max="100"
+                                                        step="5"
+                                                        data-id="4"
+                                                        value="20"
+                                                        data-tick-step="5"
+                                                        data-tick-id="weightTicks4"
+                                                        data-value-id="weightValue4"
+                                                        data-progress-id="weightProgress"
+                                                        data-handle-size="18"
+                                                        data-min-label-id="weightLabelMin4"
+                                                        data-max-label-id="weightLabelMax4"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia"> 
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc4" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc4" class="tick-slider-label"></div>
+                                                    <div id="weightValuec4" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc4" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc4" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l4"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    value="100"
+                                                    data-id="4"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc4"
+                                                    data-value-id="weightValuec4"
+                                                    data-progress-id="weightProgressc4"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc4"
+                                                    data-max-label-id="weightLabelMaxc4"
+                                                />
+                                            </div>
+                                        </div>
+                                    
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td data-label="V">Viernes</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+                                            <div class="pt-input-group">
+
+                                                <div class="tick-slider">
+                                                
+                                                    <div class="tick-slider-value-container">
+                                                        <div id="weightLabelMin5" class="tick-slider-label">0</div>
+                                                        <div id="weightLabelMax5" class="tick-slider-label">100%</div>
+                                                        <div id="weightValue5" class="tick-slider-value"></div>
+                                                    </div>
+                                                    <div class="tick-slider-background"></div>
+                                                    <div id="weightProgress5" class="tick-slider-progress"></div>
+                                                    <div id="weightTicks5" class="tick-slider-tick-container"></div>
+                                                    <input
+                                                        id="porcentaje_m5"
+                                                        class="tick-slider-input"
+                                                        type="range"
+                                                        min="0"
+                                                        max="100"
+                                                        step="5"
+                                                        value="20"
+                                                        data-id="5"
+                                                        data-tick-step="5"
+                                                        data-tick-id="weightTicks5"
+                                                        data-value-id="weightValue5"
+                                                        data-progress-id="weightProgress5"
+                                                        data-handle-size="18"
+                                                        data-min-label-id="weightLabelMin5"
+                                                        data-max-label-id="weightLabelMax5"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia">
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc5" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc5" class="tick-slider-label"></div>
+                                                    <div id="weightValuec5" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc5" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc5" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l5"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    value="100"
+                                                    data-id="5"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc5"
+                                                    data-value-id="weightValuec5"
+                                                    data-progress-id="weightProgressc5"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc5"
+                                                    data-max-label-id="weightLabelMaxc5"
+                                                />
+                                            </div>
+                                        </div>
+                                        </td>
+                                </tr>
+
+                                
+                                <tr>
+                                    <td data-label="S">Sabado</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+
+                                            <div class="pt-input-group">
+                                                <div class="pt-input-group">
+    
+                                                    <div class="tick-slider">
+                                                    
+                                                        <div class="tick-slider-value-container">
+                                                            <div id="weightLabelMin6" class="tick-slider-label">0</div>
+                                                            <div id="weightLabelMax6" class="tick-slider-label">100%</div>
+                                                            <div id="weightValue6" class="tick-slider-value"></div>
+                                                        </div>
+                                                        <div class="tick-slider-background"></div>
+                                                        <div id="weightProgress6" class="tick-slider-progress"></div>
+                                                        <div id="weightTicks6" class="tick-slider-tick-container"></div>
+                                                        <input
+                                                            id="porcentaje_m6"
+                                                            class="tick-slider-input"
+                                                            type="range"
+                                                            min="0"
+                                                            max="100"
+                                                            step="5"
+                                                            data-id="6"
+                                                            value="0"
+                                                            data-tick-step="5"
+                                                            data-tick-id="weightTicks6"
+                                                            data-value-id="weightValue6"
+                                                            data-progress-id="weightProgress6"
+                                                            data-handle-size="18"
+                                                            data-min-label-id="weightLabelMin6"
+                                                            data-max-label-id="weightLabelMax6"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia"> 
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc6" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc6" class="tick-slider-label"></div>
+                                                    <div id="weightValuec6" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc6" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc6" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l6"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    data-id="6"
+                                                    value="0"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc6"
+                                                    data-value-id="weightValuec6"
+                                                    data-progress-id="weightProgressc6"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc6"
+                                                    data-max-label-id="weightLabelMaxc6"
+                                                />
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </td>
+                                </tr>
+
+                                 
+                                <tr>
+                                    <td data-label="D">Domingo</td>
+                                    <td data-label="%">
+
+
+                                        <div class="pt-input-group">
+
+                                            <div class="pt-input-group">
+                                                <div class="pt-input-group">
+    
+                                                    <div class="tick-slider">
+                                                    
+                                                        <div class="tick-slider-value-container">
+                                                            <div id="weightLabelMin7" class="tick-slider-label">0</div>
+                                                            <div id="weightLabelMax7" class="tick-slider-label">100%</div>
+                                                            <div id="weightValue7" class="tick-slider-value"></div>
+                                                        </div>
+                                                        <div class="tick-slider-background"></div>
+                                                        <div id="weightProgress7" class="tick-slider-progress"></div>
+                                                        <div id="weightTicks7" class="tick-slider-tick-container"></div>
+                                                        <input
+                                                            id="porcentaje_m7"
+                                                            class="tick-slider-input"
+                                                            type="range"
+                                                            min="0"
+                                                            max="100"
+                                                            step="5"
+                                                            value="0"
+                                                            data-id="7"
+                                                            data-tick-step="5"
+                                                            data-tick-id="weightTicks7"
+                                                            data-value-id="weightValue7"
+                                                            data-progress-id="weightProgress7"
+                                                            data-handle-size="18"
+                                                            data-min-label-id="weightLabelMin7"
+                                                            data-max-label-id="weightLabelMax7"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia"> 
+                                        <div class="pt-input-group">
+
+                                            <div class="tick-slider">
+                                            
+                                                <div class="tick-slider-value-container">
+                                                    <div id="weightLabelMinc7" class="tick-slider-label">0</div>
+                                                    <div id="weightLabelMaxc7" class="tick-slider-label"></div>
+                                                    <div id="weightValuec7" class="tick-slider-value"></div>
+                                                </div>
+                                                <div class="tick-slider-background"></div>
+                                                <div id="weightProgressc7" class="tick-slider-progress"></div>
+                                                <div id="weightTicksc7" class="tick-slider-tick-container"></div>
+                                                <input
+                                                    id="clientes_l7"
+                                                    class="tick-slider-input-2"
+                                                    type="range"
+                                                    min="0"
+                                                    max="500"
+                                                    step="5"
+                                                    value="0"
+                                                    data-id="7"
+                                                    data-tick-step="5"
+                                                    data-tick-id="weightTicksc7"
+                                                    data-value-id="weightValuec7"
+                                                    data-progress-id="weightProgressc7"
+                                                    data-handle-size="18"
+                                                    data-min-label-id="weightLabelMinc7"
+                                                    data-max-label-id="weightLabelMaxc7"
+                                                />
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </td>
+                                </tr>
+                                    
+                                <tr>
+                                    <td data-label="T">Total</td>
+                                    <td data-label="total">
+
+
+                                        <div class="pt-input-group">
+
+                                            <input type="number" class="pt-input" placeholder="0" value="100" id="sumaTotal" readonly>
+                                        </div>
+
+
+                                    </td>
+                                    <td data-label="Client x dia">
+                                         <input readonly type="number"  value="500" class="pt-input" placeholder="0"  id="clienttotal">
+                                        </td>
+                                </tr>
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+                        <p id="mensajeSuma"></p>
+                        <br>
+
+                        <div class="buttons">
+                            <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                            <a class="nxt__btn" onclick="nextForm();">Siguiente</a>
+                        </div>
+                        <p class="text-center page">Pag 3/5</p>
+                    </div>
+                </fieldset>
+                <fieldset class="active__form" id="form4">
+                    <div class="sub__title__container">
+                        <p>Pag 4/5</p>
+                        <h2>Tu plan actual</h2>
+                        <p>Para entender cómo llegas a $<span class="valor_venta"></span> al mes, puedes manejar el tenedor “promedio de
+                            tu carta” y el volumen de personas que atiendses por dia en tu local. Aquí abajo puedes
+                            simular esto y ver el resultado. </p>
+                    </div>
+
+                    <div class="input__container">
+
+
+                        <canvas id="myChart"></canvas>
+                      
+
+                        <div class="buttons">
+                            <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                            <a class="nxt__btn" onclick="nextForm();">Siguiente</a>
+                        </div>
+                    </div>
+                    <p class="text-center page">Pag 3/5</p>
+                </fieldset>
+                <fieldset class="active__form" id="form5">
+                    <div class="sub__title__container">
+                        <p>Pag 5/5</p>
+                        <h2>Tu plan actual</h2>
+                        <p>Thanks for completing the form and for your time.Plss enter your email below and submit the
+                            form</p>
+                    </div>
+
+                    <div class="input__container">
+                        <div>
+                        
+                          </div>
+                          
+                        <div class="buttons">
+                            <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                            <a class="nxt__btn" id="submitBtn" onclick="nextForm();">Siguiente</a>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript'>const nxtBtn = document.querySelector('#submitBtn');
+    </script>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
