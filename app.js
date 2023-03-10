@@ -20,6 +20,16 @@ function nextForm() {
   displayForms();
 
   console.log(viewId);
+  if(viewId==3){
+    //carcular promedio semanal
+
+
+    const objetivoMensual=document.querySelector('#objetivo_mensual').value;
+    const consumoPromedio=document.querySelector('#tenedor_promedio').value;
+    console.log("consumoPromedio"+consumoPromedio)
+    console.log("consumoPromedio"+objetivoMensual)
+    calcularClientesPorDia(consumoPromedio, objetivoMensual)
+  }
 
 }
 
@@ -272,6 +282,7 @@ const camposRangeArrayClientes = Array.from(camposRangeClientes);
 // Convertir el objeto NodeList en un array
 const camposRangeArray = Array.from(camposRange);
 
+
 // Función para actualizar la suma de los campos de entrada
 function actualizarSumaCampos() {
   // Sumar los valores de los campos de entrada
@@ -306,8 +317,7 @@ function actualizarTotalesSumaCampos(id_campo_actual) {
 
     if (id_campo_actual !== campo.dataset.id) {
       const porcentaje = (campo.value * 100) / clienttotal.value;
-      console.info('suma' + clienttotal.value)
-      console.info('campo' + campo.value)
+
       console.info(porcentaje.toFixed(2))
       console.log(porcentaje + "campo" + campo.dataset.id)
       const porcentajeInput = document.querySelector('#porcentaje_m' + campo.dataset.id);
@@ -420,36 +430,19 @@ function sumaValoresDeCampos(campos) {
   return total;
 }
 
-const ctx = document.getElementById('myChart');
-
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Objetivo', 'Plan actual'],
-    datasets: [{
-      label: 'Plan Actual',
-      data: [12, 19],
-      backgroundColor: [
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(75, 192, 192, 0.5)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
 
 const rentabilidad = document.querySelector('#rentabilidad');
 
 rentabilidad.addEventListener('change', (event) => {
   const valor_ganancia = document.querySelector('.valor_ganancia');
   const valor_venta = document.querySelector('.valor_venta');
+
+  document.querySelector('#objetivo_mensual').value=event.target.value * 5;
+  
+
+  document.querySelector('.valor_ganancia2').innerHTML =event.target.value;
+
+  document.querySelector('.valor_ganancia3').innerHTML =event.target.value;
   valor_ganancia.innerHTML = `${event.target.value}`;
   valor_venta.innerHTML = ` ${event.target.value * 5}`;
 });
@@ -548,3 +541,75 @@ function actualizarPorcentajes() {
   actualizarSumaCampos();
 }
 
+
+function calcularClientesPorDia(consumoPromedio, objetivoMensual) {
+  const diasLaborablesPorSemana = 5;
+  const clientesPorMes = objetivoMensual / consumoPromedio;
+
+  const clientesPorDia = clientesPorMes / (30 / diasLaborablesPorSemana);
+  clientesPorDiaRedondeado= Math.ceil(clientesPorDia); 
+  const totalClientesSemana =clientesPorDiaRedondeado*5;
+  const porcentaje = (clientesPorDiaRedondeado * 100) / totalClientesSemana;
+  document.getElementById("clienttotal").value = totalClientesSemana;
+  
+  console.log("porcentaje"+porcentaje)
+  console.log("clientesPorDiaRedondeado"+clientesPorDiaRedondeado)
+  document.getElementById("clientes_l1").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_l2").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_l3").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_l4").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_l5").value = clientesPorDiaRedondeado;
+
+  document.getElementById("porcentaje_m1").value = porcentaje;
+  document.getElementById("porcentaje_m2").value = porcentaje;
+  document.getElementById("porcentaje_m3").value = porcentaje;
+  document.getElementById("porcentaje_m4").value = porcentaje;
+  document.getElementById("porcentaje_m5").value = porcentaje;
+
+  for (let index = 1; index < 6; index++) {
+    var porcentajeInput = document.querySelector('#porcentaje_m' +index);
+    var clienteInput = document.querySelector('#clientes_l' +index);
+    updateValue(clienteInput);
+    updateValuePosition(clienteInput);
+    updateLabels(clienteInput);
+    updateProgress(clienteInput);
+  
+    setTicks(porcentajeInput);
+    updateValue(porcentajeInput);
+    updateValuePosition(porcentajeInput);
+    updateLabels(porcentajeInput);
+    updateProgress(porcentajeInput);
+  
+    setTicks(porcentajeInput);
+    
+  }
+
+
+  actualizarSumaCampos();
+}
+
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Objetivo', 'Plan actual'],
+    datasets: [{
+      label: 'Plan Actual',
+      data: [12, 19],
+      backgroundColor: [
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(75, 192, 192, 0.5)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
