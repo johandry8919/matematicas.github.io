@@ -85,9 +85,10 @@ body {
     justify-content: center;
     border-right: 1px solid #42434e;
     padding: 1.25rem 0;
-    margin-right: 2rem;
     margin-top: 2rem;
-    padding-right: 1.8rem;
+  /*  margin-right: 2rem;
+    margin-top: 2rem;
+    padding-right: 1.8rem;*/
 }
 
 .side__titles {
@@ -242,9 +243,9 @@ body {
 }
 
 .nxt__btn:hover {
-    transform: scale(1.03);
-    background: #1cd68c;
-    cursor: pointer;
+    transform: scale(1.03) !important;
+    background: #1cd68c !important;
+    cursor: pointer !important;
 }
 
 .buttons {
@@ -266,7 +267,7 @@ body {
     justify-content: center;
     background: none;
     border: none;
-    color: #ff4e4e;
+    color: #ff4e4e !important;
     font-size: 18px;
     /* margin-right: 20px; */
     /* margin-left: 15rem; */
@@ -286,9 +287,14 @@ body {
 }
 
 .selection:hover {
-    border: 1px solid var(--secondery-color);
-    background-color: var(--primary-color);
+    border: 1px solid var(--secondery-color) !important;
+    background-color: var(--primary-color)  !important;
     cursor: pointer;
+}
+
+a {
+    color:var(--secondery-color);
+    text-decoration: none;
 }
 
 .imoji {
@@ -914,3 +920,35 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
 input[type="range"]:active::-webkit-slider-runnable-track {
     background: none;
 }
+
+
+
+
+    /* Define el grid */
+    .container-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Dos columnas de ancho igual */
+        grid-gap: 10px; /* Espacio entre las celdas */
+      }
+  
+      /* Establece el ancho del grid en dispositivos móviles */
+      @media (max-width: 767px) {
+        .container-grid {
+          grid-template-columns: 1fr; /* Una columna de ancho completo */
+        }
+      }
+  
+      /* Establece el ancho del grid en dispositivos de escritorio */
+      @media (min-width: 768px) {
+        .container-grid {
+          max-width: 960px; /* Ancho máximo del grid */
+          margin: 0 auto; /* Centra el grid en la pantalla */
+        }
+      }
+  
+      /* Estilos de las celdas */
+      .item-grid {
+     
+        padding: 20px;
+    
+      }

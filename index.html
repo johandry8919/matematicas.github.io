@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/lib/js/emojione.min.js" integrity="sha512-ibgn4qpJT55EG11zy1D65XS/7pgdgVxwPEwSSNDfH35Li2kEpNHKNs/lcmkwm5kaOaA1Ls1kdRSE6L/Qs7DE+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/css/emojione.min.css" integrity="sha512-stXuDISyaxZUf+TKKuWLknpyCteOwkgqm4eqXCRuryS1d9aqKj1VIuDRHevj4DC8voNTwY/mHklbyoRTkRdulQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+ 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -745,11 +747,30 @@
                             simular esto y ver el resultado. </p>
                     </div>
 
+                    
                     <div class="input__container">
 
+                        <div class="container-grid">
 
-                        <canvas id="myChart"></canvas>
-                      
+                                                
+                            <div class=" item-grid ">
+                                <table class="table">
+                                    <thead>
+                                        <th></th>
+                                        <th> % de clientes a la semana</th>
+                                        <th>Clientes por dia</th>
+                                    </thead>
+                                    <tbody>
+                                        </tbody>
+                                        </table>
+                            </div>
+                            
+                            <div class="item-grid ">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                                           
+                        </div>
+       
 
                         <div class="buttons">
                             <a class="prev__btn" onclick="prevForm();">Regresar</a>
