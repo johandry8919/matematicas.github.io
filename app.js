@@ -26,11 +26,36 @@ function nextForm() {
 
     const objetivoMensual=document.querySelector('#objetivo_mensual').value;
     const consumoPromedio=document.querySelector('#tenedor_promedio').value;
+    
     console.log("consumoPromedio"+consumoPromedio)
     console.log("consumoPromedio"+objetivoMensual)
     calcularClientesPorDia(consumoPromedio, objetivoMensual)
+  }else if(viewId==4){
+    actualizar_tabla_paso_4();
+    const metaVentasMensual=document.querySelector('#objetivo_mensual').value;
+    const consumoPromedio=document.querySelector('#tenedor_promedio').value;
+    const clienttotal=document.querySelector('#clienttotal').value;
+
+    const SEMANAS_MES = 4;
+    const meta_alcanzada =   (clienttotal * consumoPromedio) * SEMANAS_MES;
+
+
+
+    actualizarGrafico(metaVentasMensual, meta_alcanzada);
   }
 
+}
+
+const tenenedo_promedio_2 = document.getElementById('tenedor_promedio2');
+tenenedo_promedio_2.addEventListener('input',event_tenedor_promedio);
+
+function event_tenedor_promedio(event) {
+  const SEMANAS_MES = 4;
+  const clienttotal=document.querySelector('#clienttotal2').value;
+  const metaVentasMensual=document.querySelector('#objetivo_mensual').value;
+  const consumoPromedio= event.target.value;
+  const meta_alcanzada =   (clienttotal * consumoPromedio) * SEMANAS_MES;
+  actualizarGrafico(metaVentasMensual, meta_alcanzada);
 }
 
 function prevForm() {
@@ -146,7 +171,7 @@ function displayForms() {
 
 
 function init() {
-  const sliders = document.getElementsByClassName("tick-slider-input");
+  const sliders = document.getElementsByClassName( "tick-slider-input");
   const sliders2 = document.getElementsByClassName("tick-slider-input-2");
 
   for (let slider of sliders) {
@@ -162,7 +187,6 @@ function init() {
 
   for (let slider of sliders2) {
     slider.oninput = onSliderInput;
-
     updateValue(slider);
     updateValuePosition(slider);
     updateLabels(slider);
@@ -170,6 +194,8 @@ function init() {
 
     setTicks(slider);
   }
+
+
 
 
 }
@@ -257,6 +283,7 @@ function setTicks(slider) {
 function onResize() {
   const sliders = document.getElementsByClassName("tick-slider-input");
   const sliders2 = document.getElementsByClassName("tick-slider-input-2");
+
   for (let slider of sliders) {
     updateValuePosition(slider);
   }
@@ -264,6 +291,9 @@ function onResize() {
   for (let slider of sliders2) {
     updateValuePosition(slider);
   }
+
+
+  
 }
 
 window.onload = init;
@@ -276,22 +306,35 @@ const camposRange = document.getElementsByClassName('tick-slider-input');
 // Obtener los campos de entrada
 const camposRangeClientes = document.getElementsByClassName('tick-slider-input-2');
 
+
+// Obtener los campos de entrada
+const camposRange2 = document.getElementsByClassName('tick-slider-pag-3');
+// Obtener los campos de entrada
+const camposRangeClientes2 = document.getElementsByClassName('tick-slider-pag-4');
+
 // Convertir el objeto NodeList en un array
 const camposRangeArrayClientes = Array.from(camposRangeClientes);
 
 // Convertir el objeto NodeList en un array
+const camposRangeArray2 = Array.from(camposRange2);
+
+
+// Convertir el objeto NodeList en un array
+const camposRangeArrayClientes2 = Array.from(camposRangeClientes2);
+
+// Convertir el objeto NodeList en un array
 const camposRangeArray = Array.from(camposRange);
-
-
 // Función para actualizar la suma de los campos de entrada
 function actualizarSumaCampos() {
   // Sumar los valores de los campos de entrada
   const sumaValores = camposRangeArray.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
-
+  const sumaValoresClientes = camposRangeArrayClientes.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
   // Actualizar el elemento HTML que muestra la suma
   const sumaCamposElement = document.getElementById('sumaTotal');
-  sumaCamposElement.value = sumaValores;
-
+  const sumaCamposElementCliente = document.getElementById('clienttotal');
+  
+  sumaCamposElement.value = Math.round(sumaValores);
+  sumaCamposElementCliente.value = Math.round(sumaValoresClientes) 
 
   // Verificar si la suma es mayor a 100
   if (sumaValores > 100) {
@@ -303,6 +346,8 @@ function actualizarSumaCampos() {
   }
 
 
+  
+
 
 
 
@@ -311,27 +356,35 @@ function actualizarSumaCampos() {
 function actualizarTotalesSumaCampos(id_campo_actual) {
 
   // Sumar los valores de los campos de entrada
-  const clienttotal = document.getElementById('clienttotal');
+  const clienttotal = document.querySelector('#clienttotal');
 
   for (let campo of camposRangeClientes) {
 
     if (id_campo_actual !== campo.dataset.id) {
-      const porcentaje = (campo.value * 100) / clienttotal.value;
+      const porcentaje = Math.round((campo.value * 100) / clienttotal.value);
 
-      console.info(porcentaje.toFixed(2))
-      console.log(porcentaje + "campo" + campo.dataset.id)
+ 
       const porcentajeInput = document.querySelector('#porcentaje_m' + campo.dataset.id);
-      porcentajeInput.value = porcentaje.toFixed(2);
+      const porcentajeInputc = document.querySelector('#porcentaje_c' + campo.dataset.id);
+      porcentajeInput.value = porcentaje;
       porcentajeInput.oninput = onSliderInput;
+
+      porcentajeInputc.value = porcentaje;
+      porcentajeInputc.oninput = onSliderInput;
 
       updateValue(porcentajeInput);
       updateValuePosition(porcentajeInput);
       updateLabels(porcentajeInput);
       updateProgress(porcentajeInput);
-
       setTicks(porcentajeInput);
-
       porcentajeInput.oninput = onSliderInput;
+
+      updateValue(porcentajeInputc);
+      updateValuePosition(porcentajeInputc);
+      updateLabels(porcentajeInputc);
+      updateProgress(porcentajeInputc);
+      setTicks(porcentajeInputc);
+      porcentajeInputc.oninput = onSliderInput;
 
     }
     actualizarSumaCampos();
@@ -343,30 +396,62 @@ function actualizarTotalesSumaCampos(id_campo_actual) {
 }
 
 
+function actualizar_tabla_paso_4(){
+
+  for (let index = 1; index < 8; index++) {
+    var valor_cliente_1=   document.getElementById("clientes_l"+index).value;
+    var porcentaje_cliente_1=   document.getElementById("porcentaje_m"+index).value;
+
+    document.getElementById("clientes_c"+index).value = valor_cliente_1;
+    document.getElementById("porcentaje_c"+index).value = porcentaje_cliente_1;
+  
+  }
+  var sumaTotal= document.getElementById("sumaTotal").value;
+  document.getElementById("sumaTotal2").value=sumaTotal;
+  
+  var clienttotal= document.getElementById("clienttotal").value;
+  document.getElementById("clienttotal2").value=clienttotal;
+  const consumoPromedio=document.querySelector('#tenedor_promedio').value;
+
+document.querySelector('#tenedor_promedio2').value =consumoPromedio
+ 
+}
+
 function actualizarTotalesSumaClientes(id_campo_actual) {
 
   // Sumar los valores de los campos de entrada
-  const clienttotal = document.getElementById('clienttotal');
+  const clienttotal = document.querySelector('#clienttotal');
 
   for (let campo of camposRange) {
 
     if (id_campo_actual !== campo.dataset.id) {
-      const porcentaje = (campo.value * clienttotal.value) / 100;
+      const porcentaje = Math.round((campo.value * clienttotal.value) / 100);
       console.log(campo.value + "x" + clienttotal.value)
-      console.info(porcentaje.toFixed(2))
+      console.info(porcentaje)
 
       const porcentajeInput = document.querySelector('#clientes_l' + campo.dataset.id);
+      
+      const porcentajeInput_c = document.querySelector('#clientes_c' + campo.dataset.id);
       porcentajeInput.value = porcentaje.toFixed(2);
       porcentajeInput.oninput = onSliderInput;
+
+      porcentajeInput_c.value = porcentaje.toFixed(2);
+      porcentajeInput_c.oninput = onSliderInput;
+
 
       updateValue(porcentajeInput);
       updateValuePosition(porcentajeInput);
       updateLabels(porcentajeInput);
       updateProgress(porcentajeInput);
-
       setTicks(porcentajeInput);
-
       porcentajeInput.oninput = onSliderInput;
+
+      updateValue(porcentajeInput_c);
+      updateValuePosition(porcentajeInput_c);
+      updateLabels(porcentajeInput_c);
+      updateProgress(porcentajeInput_c);
+      setTicks(porcentajeInput_c);
+      porcentajeInput_c.oninput = onSliderInput;
 
     }
 
@@ -391,8 +476,12 @@ function actualizarSumaCamposClientes() {
   const sumaValores = camposRangeArrayClientes.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
 
   // Actualizar el elemento HTML que muestra la suma
-  const sumaCamposElement = document.getElementById('clienttotal');
+  const sumaCamposElement = document.querySelector('#clienttotal');
+  const sumaCamposElement2 = document.querySelector('#clienttotal2');
+
+  
   sumaCamposElement.value = sumaValores;
+  sumaCamposElement2.value = sumaValores;
 
 
 }
@@ -424,11 +513,7 @@ function mostrarEmoji(respuesta, msj = '') {
 }
 
 
-function sumaValoresDeCampos(campos) {
-  let total = 0;
-  campos.forEach((campo) => (total += parseInt(campo.value)));
-  return total;
-}
+
 
 
 const rentabilidad = document.querySelector('#rentabilidad');
@@ -437,7 +522,7 @@ rentabilidad.addEventListener('change', (event) => {
   const valor_ganancia = document.querySelector('.valor_ganancia');
   const valor_venta = document.querySelector('.valor_venta');
 
-  document.querySelector('#objetivo_mensual').value=event.target.value * 5;
+  document.querySelector('#objetivo_mensual').value=Math.round(event.target.value * 5);
   
 
   document.querySelector('.valor_ganancia2').innerHTML =event.target.value;
@@ -458,12 +543,13 @@ for (var i = 0; i < campos.length; i++) {
     for (var j = 0; j < campos.length; j++) {
       // Verificamos si el valor del campo es numérico
       if (!isNaN(parseFloat(campos[j].value))) {
-        total += parseFloat(campos[j].value);
+        total += Math.round(parseFloat(campos[j].value));
       }
     }
 
     // Establecemos la suma total en el campo de entrada con el id "clienttotal"
-    document.getElementById("clienttotal").value = total;
+    document.querySelector('#clienttotal').value = total;
+   document.querySelector('#clienttotal2').value  = total;
   });
 }
 
@@ -473,48 +559,161 @@ for (var i = 0; i < campos.length; i++) {
 const clientes = document.querySelectorAll('input[id^="clientes_l"]');
 const porcentajes = document.querySelectorAll('input[id^="porcentaje_m"]');
 
+///Obtener todos los input de clientes y porcentaje
+const clientes2 = document.querySelectorAll('input[id^="clientes_c"]');
+const porcentajes2 = document.querySelectorAll('input[id^="porcentaje_c"]');
 // Obtener el input de total de clientes y asignar evento de cambio
 const totalClientes = document.querySelector('#clienttotal');
+const totalClientes2 = document.querySelector('#clienttotal2');
 totalClientes.addEventListener('change', actualizarPorcentajes);
-
+totalClientes2.addEventListener('change', actualizarPorcentajeTabla_2);
 // Asignar evento de cambio para cada input de clientes y porcentaje
 for (let i = 0; i < clientes.length; i++) {
   clientes[i].addEventListener('change', actualizarPorcentaje);
-  porcentajes[i].addEventListener('change', actualizarCliente);
+  clientes2[i].addEventListener('change', actualizarPorcentajeTabla_2);
+  if(porcentajes[i]){
+    porcentajes[i].addEventListener('change', actualizarCliente);
+    porcentajes2[i].addEventListener('change', actualizarClienteTabla2);
+  }
+
 }
 
+function actualizarClienteTabla2(event){
+  const porcentaje =Math.round( event.target.value);
+  console.log(' function actualizarClienteTabla2')
+
+  const valorCliente = Math.round((porcentaje * totalClientes2.value) / 100);
+  const clienteInput = document.querySelector('#clientes_l' + event.target.dataset.id);
+  const clienteInput_2 = document.querySelector('#clientes_c' + event.target.dataset.id);
+  const sumaCamposElement = document.getElementById('sumaTotal2');
+  clienteInput.value = valorCliente;
+  clienteInput_2.value = valorCliente;
+  const sumaValoresClientes = camposRangeArrayClientes2.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
+  const sumaCamposElementCliente = document.getElementById('clienttotal2');
+  sumaCamposElementCliente.value = Math.round(sumaValoresClientes) 
+  
+
+  const sumaValores = camposRangeArray2.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
+  sumaCamposElement.value = Math.round(sumaValores) 
+
+  const consumoPromedio = document.getElementById('tenedor_promedio2');
+  const SEMANAS_MES = 4;
+  const metaVentasMensual=document.querySelector('#objetivo_mensual').value;
+  const meta_alcanzada =   (totalClientes2 * consumoPromedio) * SEMANAS_MES;
+  actualizarGrafico(metaVentasMensual, meta_alcanzada);
+   // Verificar si la suma es mayor a 100
+   if (sumaValores > 100) {
+    mostrarEmoji(false, 'La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera')
+    //alert('La suma de los campos no puede ser mayor a 100');
+  } else {
+
+    mostrarEmoji(true)
+  }
+  for (let campo of camposRange2) {
+
+    if ( event.target.dataset.id !== campo.dataset.id) {
+      const porcentaje = Math.round((campo.value * clienttotal2.value) / 100);
+      const porcentajeInput = document.querySelector('#clientes_l' + campo.dataset.id);
+      const porcentajeInput_c = document.querySelector('#clientes_c' + campo.dataset.id);
+      porcentajeInput.value = porcentaje;
+      porcentajeInput_c.value =porcentaje;
+    }
+  }
+
+}
+
+function actualizarPorcentajeTabla_2(event){
+  console.log(' function actualizarPorcentajeTabla_2')
+
+  const valorporcentaje= parseInt(event.target.value);
+  const sumaValoresClientes = camposRangeArrayClientes2.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
+  const sumaCamposElementCliente = document.getElementById('clienttotal2');
+  sumaCamposElementCliente.value = Math.round(sumaValoresClientes) 
+
+const sumaCamposElement = document.getElementById('sumaTotal2');
+  const consumoPromedio = document.getElementById('tenedor_promedio2');
+  const SEMANAS_MES = 4;
+  const metaVentasMensual=document.querySelector('#objetivo_mensual').value;
+  const meta_alcanzada =   ( sumaCamposElementCliente.value * consumoPromedio.value) * SEMANAS_MES;
+
+  actualizarGrafico(metaVentasMensual, meta_alcanzada);
+for (let campo of camposRangeArrayClientes2) {
+
+  const porcentaje =Math.round( (valorporcentaje / totalClientes2.value) * 100);
+  console.log("porcentaje",porcentaje)
+  const porcentajeInput = document.querySelector('#porcentaje_m' + event.target.dataset.id);
+  const porcentajeInput_2 = document.querySelector('#porcentaje_c' + event.target.dataset.id);
+  porcentajeInput.value = porcentaje;
+  porcentajeInput_2.value =porcentaje;
+
+  // Actualizar el elemento HTML que muestra la suma
+
+  
+
+
+
+    if (event.target.dataset.id !== campo.dataset.id) {
+      const porcentaje = Math.round((campo.value * 100) / totalClientes2.value);
+      const porcentajeInput = document.querySelector('#porcentaje_m' + campo.dataset.id);
+      const porcentajeInputc = document.querySelector('#porcentaje_c' + campo.dataset.id);
+      porcentajeInput.value = porcentaje;
+      porcentajeInputc.value = porcentaje;
+
+    
+    }
+
+
+  };
+
+
+  const sumaValores = camposRangeArray2.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
+  sumaCamposElement.value = Math.round(sumaValores) 
+
+   // Verificar si la suma es mayor a 100
+   if (sumaValores > 100) {
+    mostrarEmoji(false, 'La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera')
+    //alert('La suma de los campos no puede ser mayor a 100');
+  }else if(meta_alcanzada < metaVentasMensual){
+    mostrarEmoji(false, 'Incrementa el numerero de clientes  por dia para alcanzar tu objetivo')
+  } else {
+
+    mostrarEmoji(true)
+  }
+
+
+  
+}
 // Función para actualizar el porcentaje correspondiente al input de clientes
 function actualizarPorcentaje(event) {
   const valorCliente = parseInt(event.target.value);
 
 
-  const porcentaje = (valorCliente / totalClientes.value) * 100;
+  const porcentaje =Math.round( (valorCliente / totalClientes.value) * 100);
   const porcentajeInput = document.querySelector('#porcentaje_m' + event.target.dataset.id);
-  porcentajeInput.value = porcentaje.toFixed(2);
-
+  const porcentajeInput_2 = document.querySelector('#porcentaje_c' + event.target.dataset.id);
+  porcentajeInput.value = porcentaje;
+  porcentajeInput_2.value =porcentaje;
 
   porcentajeInput.oninput = onSliderInput;
-
   updateValue(porcentajeInput);
   updateValuePosition(porcentajeInput);
   updateLabels(porcentajeInput);
   updateProgress(porcentajeInput);
-
   setTicks(porcentajeInput);
-
   porcentajeInput.oninput = onSliderInput;
-
-
   actualizarSumaCampos();
   actualizarTotalesSumaCampos(event.target.dataset.id)
+
 }
 
 // Función para actualizar el valor de clientes correspondiente al input de porcentaje
 function actualizarCliente(event) {
-  const porcentaje = parseFloat(event.target.value);
-  const valorCliente = (porcentaje * totalClientes.value) / 100;
-  const clienteInput = document.querySelector('#clientes_l' + event.target.dataset.id);;
-  clienteInput.value = valorCliente.toFixed(2);
+  const porcentaje =Math.round( parseFloat(event.target.value));
+  const valorCliente = Math.round((porcentaje * totalClientes.value) / 100);
+  const clienteInput = document.querySelector('#clientes_l' + event.target.dataset.id);
+  const clienteInput_2 = document.querySelector('#clientes_c' + event.target.dataset.id);
+  clienteInput.value = valorCliente;
+  clienteInput_2.value = valorCliente;
   actualizarTotalesSumaClientes(event.target.dataset.id)
   clienteInput.oninput = onSliderInput;
 
@@ -522,8 +721,9 @@ function actualizarCliente(event) {
   updateValuePosition(clienteInput);
   updateLabels(clienteInput);
   updateProgress(clienteInput);
-
   setTicks(clienteInput);
+
+
 
   actualizarSumaCampos();
 }
@@ -542,15 +742,15 @@ function actualizarPorcentajes() {
 }
 
 
-function calcularClientesPorDia(consumoPromedio, objetivoMensual) {
-  const diasLaborablesPorSemana = 5;
-  const clientesPorMes = objetivoMensual / consumoPromedio;
-
-  const clientesPorDia = clientesPorMes / (30 / diasLaborablesPorSemana);
-  clientesPorDiaRedondeado= Math.ceil(clientesPorDia); 
-  const totalClientesSemana =clientesPorDiaRedondeado*5;
+function calcularClientesPorDia(consumoPromedio, metaVentasMensual ) {
+  const DIAS_LABORABLES_SEMANA = 5;
+  const SEMANAS_MES = 4;
+  const ventasDiarias = metaVentasMensual / (DIAS_LABORABLES_SEMANA * SEMANAS_MES);
+  const clientesPorDiaRedondeado = Math.ceil(ventasDiarias / consumoPromedio);
+  const totalClientesSemana =clientesPorDiaRedondeado * DIAS_LABORABLES_SEMANA;
   const porcentaje = (clientesPorDiaRedondeado * 100) / totalClientesSemana;
-  document.getElementById("clienttotal").value = totalClientesSemana;
+  document.querySelector('#clienttotal').value = totalClientesSemana;
+  document.querySelector('#clienttotal2').value  = totalClientesSemana;
   
   console.log("porcentaje"+porcentaje)
   console.log("clientesPorDiaRedondeado"+clientesPorDiaRedondeado)
@@ -560,15 +760,22 @@ function calcularClientesPorDia(consumoPromedio, objetivoMensual) {
   document.getElementById("clientes_l4").value = clientesPorDiaRedondeado;
   document.getElementById("clientes_l5").value = clientesPorDiaRedondeado;
 
-  document.getElementById("porcentaje_m1").value = porcentaje;
-  document.getElementById("porcentaje_m2").value = porcentaje;
-  document.getElementById("porcentaje_m3").value = porcentaje;
-  document.getElementById("porcentaje_m4").value = porcentaje;
-  document.getElementById("porcentaje_m5").value = porcentaje;
+  document.getElementById("clientes_c1").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_c2").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_c3").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_c4").value = clientesPorDiaRedondeado;
+  document.getElementById("clientes_c5").value = clientesPorDiaRedondeado;
+
+  document.getElementById("porcentaje_c1").value = porcentaje;
+  document.getElementById("porcentaje_c2").value = porcentaje;
+  document.getElementById("porcentaje_c3").value = porcentaje;
+  document.getElementById("porcentaje_c4").value = porcentaje;
+  document.getElementById("porcentaje_c5").value = porcentaje;
 
   for (let index = 1; index < 6; index++) {
     var porcentajeInput = document.querySelector('#porcentaje_m' +index);
     var clienteInput = document.querySelector('#clientes_l' +index);
+
     updateValue(clienteInput);
     updateValuePosition(clienteInput);
     updateLabels(clienteInput);
@@ -579,8 +786,10 @@ function calcularClientesPorDia(consumoPromedio, objetivoMensual) {
     updateValuePosition(porcentajeInput);
     updateLabels(porcentajeInput);
     updateProgress(porcentajeInput);
-  
     setTicks(porcentajeInput);
+
+    
+ 
     
   }
 
@@ -591,13 +800,13 @@ function calcularClientesPorDia(consumoPromedio, objetivoMensual) {
 
 const ctx = document.getElementById('myChart');
 
-new Chart(ctx, {
+const chart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ['Objetivo', 'Plan actual'],
     datasets: [{
-      label: 'Plan Actual',
-      data: [12, 19],
+      label: 'Plan',
+      data: [0, 0],
       backgroundColor: [
         'rgba(54, 162, 235, 0.5)',
         'rgba(75, 192, 192, 0.5)'
@@ -613,3 +822,35 @@ new Chart(ctx, {
     }
   }
 });
+
+const objetivoInput = document.getElementById('sumaTotal2');
+const planInput = document.getElementById('clienttotal2');
+
+
+
+function actualizarGrafico(objetivo, plan) {
+
+let backgroundColor = 'rgba(75, 192, 192, 0.5)'; // verde por defecto
+if (plan < objetivo) {
+  backgroundColor = 'rgba(255, 99, 132, 0.5)'; // rojo si el plan es menor que el objetivo
+}
+
+
+
+
+
+  chart.data.datasets[0].data = [objetivo, plan];
+  chart.data.datasets[0].backgroundColor[1] = backgroundColor;
+  chart.options.plugins.tooltip.callbacks.label = function (context) {
+    const label = context.dataset.label || '';
+
+    if (label) {
+      return label + ': ' + context.formattedValue;
+    } else {
+      return context.formattedValue ;
+    }
+  };
+
+  chart.update();
+}
+

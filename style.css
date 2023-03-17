@@ -223,6 +223,7 @@ body {
     color: #42434e;
 }
 
+
 .nxt__btn {
     width: 30%;
     display: flex;
@@ -579,6 +580,12 @@ a {
       font-weight: bold;
       text-align: left;
     }
+    .tick-slider-pag-3 .tick-slider-pag-3{
+        font-size: 0.7rem;
+        padding: 0.6rem 0.5rem ;
+        height: calc(0.5em + 0.65rem + 1px) !important;
+        margin: 0px;
+      }
   }
   
 
@@ -923,7 +930,26 @@ input[type="range"]:active::-webkit-slider-runnable-track {
 
 
 
+.container-flex{
+    display: flex;
 
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+   align-content: center;
+ 
+}
+
+.item-flex{
+    width: 100%;
+   
+    /* float: right; */
+    /* width: 30%; */
+    padding: 0.75rem 0;
+   
+}
     /* Define el grid */
     .container-grid{
         display: grid;
@@ -932,9 +958,14 @@ input[type="range"]:active::-webkit-slider-runnable-track {
       }
   
       /* Establece el ancho del grid en dispositivos móviles */
-      @media (max-width: 767px) {
+      @media (max-width: 768px) {
         .container-grid {
           grid-template-columns: 1fr; /* Una columna de ancho completo */
+        }
+        .item-flex{
+        
+           
+           
         }
       }
   
@@ -946,9 +977,10 @@ input[type="range"]:active::-webkit-slider-runnable-track {
         }
       }
   
-      /* Estilos de las celdas */
-      .item-grid {
-     
-        padding: 20px;
-    
+      .tick-slider-pag-3, .tick-slider-pag-4{
+        font-size: 0.7rem;
+        padding: 0.6rem 0.5rem ;
+        height: calc(0.5em + 0.65rem + 1px) !important;
+        margin: 0px;
       }
+  
