@@ -1,5 +1,5 @@
-const formIds = ["#form1", "#form2", "#form3", "#form4", "#form5"];
-const iconIds = ["#icon1", "#icon2", "#icon3", "#icon4", "#icon5"];
+const formIds = ["#form1", "#form2", "#form3", "#form4", "#form5","#form6"];
+const iconIds = ["#icon1", "#icon2", "#icon3", "#icon4", "#icon5","#icon6"];
 const SEMANAS_MES = 4;
 let viewId = 1;
 const forms = formIds.map((id) => document.querySelector(id));
@@ -49,29 +49,16 @@ for (var i = 0; i < campos.length; i++) {
 
 // Obtener los campos de entrada
 const camposRange = document.getElementsByClassName("tick-slider-input");
-// Obtener los campos de entrada
-const camposRangeClientes = document.getElementsByClassName(
-  "tick-slider-input-2"
-);
-
-// Obtener los campos de entrada
+const camposRangeClientes = document.getElementsByClassName("tick-slider-input-2");
 const camposRange2 = document.getElementsByClassName("tick-slider-pag-3");
-// Obtener los campos de entrada
-const camposRangeClientes2 =
-  document.getElementsByClassName("tick-slider-pag-4");
+const camposRangeClientes2 = document.getElementsByClassName("tick-slider-pag-4");
 
 // Convertir el objeto NodeList en un array
 const camposRangeArrayClientes = Array.from(camposRangeClientes);
-
-// Convertir el objeto NodeList en un array
 const camposRangeArray2 = Array.from(camposRange2);
-
-// Convertir el objeto NodeList en un array
 const camposRangeArrayClientes2 = Array.from(camposRangeClientes2);
-
-// Convertir el objeto NodeList en un array
 const camposRangeArray = Array.from(camposRange);
-// Función para actualizar la suma de los campos de entrada
+
 
 ///Obtener todos los input de clientes y porcentaje
 const clientes = document.querySelectorAll('input[id^="clientes_l"]');
@@ -105,9 +92,23 @@ for (let campo of camposRangeArrayClientes) {
   campo.addEventListener("input", actualizarSumaCamposClientes);
 }
 
+
+costoPromedioInput.addEventListener("input", () => {
+  const nuevoCostoPromedio = parseFloat(costoPromedioInput.value);
+  actualizarGraficoCosto(nuevoCostoPromedio);
+});
+
+
 /**GRAFICOS */
 
 const ctx = document.getElementById("myChart");
+const objetivoInput = document.getElementById("sumaTotal2");
+const planInput = document.getElementById("clienttotal2");
+const ctx_costo_promedio = document.getElementById("chart_costo_promedio").getContext("2d");
+const objetivo = 65; // valor del objetivo
+const costo = 35; // valor del costo
+const porcentajeObjetivo = Math.round((objetivo / total) * 100);
+const porcentajeCosto = Math.round((costo / total) * 100);
 
 const chart = new Chart(ctx, {
   type: "bar",
@@ -131,19 +132,10 @@ const chart = new Chart(ctx, {
   },
 });
 
-const objetivoInput = document.getElementById("sumaTotal2");
-const planInput = document.getElementById("clienttotal2");
 
-const ctx_costo_promedio = document
-  .getElementById("chart_costo_promedio")
-  .getContext("2d");
 
-const objetivo = 65; // valor del objetivo
-const costo = 35; // valor del costo
-const total = objetivo + costo; // valor total
 
-const porcentajeObjetivo = Math.round((objetivo / total) * 100);
-const porcentajeCosto = Math.round((costo / total) * 100);
+
 
 const chartDatactcosto_promedio = {
   labels: ["Objetivo y Costo"],
@@ -199,11 +191,6 @@ const chartCosto = new Chart(ctx_costo_promedio, {
 
 
 
-costoPromedioInput.addEventListener("input", () => {
-  const nuevoCostoPromedio = parseFloat(costoPromedioInput.value);
-  actualizarGraficoCosto(nuevoCostoPromedio);
-});
-
 
 
 
@@ -233,6 +220,25 @@ function nextForm() {
   }
 }
 
+$(document).on("click", ".number-spinner button", function () {
+  var btn = $(this),
+    oldValue = btn.closest(".number-spinner").find("input").val().trim(),
+    newVal = 0;
+
+  if (btn.attr("data-dir") == "up") {
+    newVal = parseInt(oldValue) + 1;
+  } else {
+    if (oldValue > 1) {
+      newVal = parseInt(oldValue) - 1;
+    } else {
+      newVal = 1;
+    }
+  }
+  btn.closest(".number-spinner").find("input").val(newVal);
+});
+
+
+/**FUCIONES */
 function click_tenedor_promedio() {
   const tenenedo_promedio_2 =
     document.getElementById("tenedor_promedio2").value;
@@ -835,22 +841,7 @@ function actualizarGrafico(objetivo, plan) {
   chart.update();
 }
 
-$(document).on("click", ".number-spinner button", function () {
-  var btn = $(this),
-    oldValue = btn.closest(".number-spinner").find("input").val().trim(),
-    newVal = 0;
 
-  if (btn.attr("data-dir") == "up") {
-    newVal = parseInt(oldValue) + 1;
-  } else {
-    if (oldValue > 1) {
-      newVal = parseInt(oldValue) - 1;
-    } else {
-      newVal = 1;
-    }
-  }
-  btn.closest(".number-spinner").find("input").val(newVal);
-});
 
 
 function actualizarGraficoCosto(nuevoCostoPromedio) {
