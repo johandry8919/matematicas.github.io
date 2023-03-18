@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
  
  <style>
-        html {
+        body {
             background: url(fondo.jpg) no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -27,8 +27,8 @@
 </head>
 
 <body className='snippet-body'>
-    <div class="container">
-        <div class="form__container">
+    <div class="">
+        <div class="form__container ">
             <div class="title__container">
                 <h1>Matematicas para restaurantes</h1>
                 <p>Conviértete en un experto en la gestión financiera de tu restaurante</p>
@@ -89,8 +89,8 @@
                     </div>
                    
                 </div>
-                <div class="right__container">
-                    <fieldset id="form1">
+                <div class="right__container " >
+                    <fieldset id="form1" >
                         <div class="sub__title__container ">
                          
                             <h2>¿Cuánto quieres ganar (rentabilidad) en el restaurante en
@@ -98,15 +98,36 @@
                             <p>Ingresa tu objetivo de ingresos mensual</p>
                         </div>
     
-                        <div class="input__container">
-                          <label for="rentabilidad"> Ingresos</label>
-                                <input  type="number" id="rentabilidad" class="form-control" placeholder="">
+                        <div class="input__container  ">
+                      
+                              
+                                <div class="row justify-content-md-center mb-5">
+                                    <div class="col-xs-3 3">
+                                        <label for="rentabilidad"> Ingresos</label>
+                                        <div class="input-group number-spinner">
+                                            <span class="input-group-btn">
+                                                <button class="btn   btn-warning text-white"  data-dir="up" >
+                                                    <i class="fa fa-plus " aria-hidden="true"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" class="form-control text-center  form-control-sm" 
+                                              id="rentabilidad" value="100">
+                                            <span class="input-group-btn">
+                                                <button class="btn  btn-warning text-white"  data-dir="dwn"  >
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                  
+
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <input type="hidden" id="objetivo_mensual" >
                             <a class="nxt__btn btn btn-warning text-white" onclick="nextForm();"> Siguiente</a>
                         </div>
                         <p class="text-center page">Pag 1/5</p>
                     </fieldset>
-                    <fieldset class="active__form" id="form2">
+                    <fieldset class="active__form" id="form2" class="form">
                         <div class="sub__title__container">
                         
                             <h2>Para ganar $<span class="valor_ganancia"></span> al mes, tu restaurante debe vender $<span class="valor_venta"></span>  al mes.</h2>
@@ -118,8 +139,29 @@
     
                         <div class="input__container">
     
-                            <label for="name">Tenedor Promedio</label>
-                            <input type="number" value="10" id="tenedor_promedio" class="form-control" >
+                           
+                            <div class="row justify-content-md-center mb-5">
+                                <div class="col-xs-3 3">
+                                    <label for="tenedor_promedio"> Tenedor promedio</label>
+                                    <div class="input-group number-spinner">
+                                        <span class="input-group-btn">
+                                            <button class="btn   btn-warning text-white"  data-dir="up"  >
+                                                <i class="fa   fa-plus " aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" class="form-control text-center" 
+                                          id="tenedor_promedio" value="10">
+                                        <span class="input-group-btn">
+                                            <button class="btn  btn-warning text-white"  data-dir="dwn"  >
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                              
+
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                           
     
                             <div class="buttons">
                                 <a class="prev__btn" onclick="prevForm();">Regresar</a>
@@ -128,7 +170,7 @@
                             <p class="text-center page">Pag 2/5</p>
                         </div>
                     </fieldset>
-                    <fieldset class="active__form" id="form3">
+                    <fieldset class="active__form" id="form3" class="form">
                         <div class="sub__title__container">
                            
                             <h2>Objetivos por dia</h2>
@@ -738,7 +780,7 @@
                             <p class="text-center page">Pag 3/5</p>
                         </div>
                     </fieldset>
-                    <fieldset class="active__form" id="form4">
+                    <fieldset class="active__form" id="form4" class="form">
                         <div class="sub__title__container">
              
                             <h2>Tu plan actual</h2>
@@ -752,8 +794,29 @@
     
                             <div class="container-flex">
                                 <div class="item-flex ">
-                                    <label for="tenedor_promedio2">Tenedor promedio</label>
-                                    <input type="number" class="" id="tenedor_promedio2" class="tenedor_promedio">
+                        
+                                    
+                                <div class="row justify-content-md-center mb-5">
+                                    <div class="col-xs-3 3">
+                                        <label for="tenedor_promedio2"> Tenedor promedio</label>
+                                        <div class="input-group number-spinner">
+                                            <span class="input-group-btn">
+                                                <button onclick="click_tenedor_promedio() " class="btn   btn-warning text-white"  data-dir="up" >
+                                                    <i class="fa fa-plus " aria-hidden="true"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" class="form-control text-center" 
+                                              id="tenedor_promedio2" value="100">
+                                            <span class="input-group-btn">
+                                                <button onclick="click_tenedor_promedio() "  class="btn  btn-warning text-white"  data-dir="dwn"  >
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                  
+
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                                     <canvas id="myChart"></canvas>
                                 </div>
                                                     
@@ -772,6 +835,7 @@
             
                                                     <div class="pt-input-group">
             
+                                                        
                                                         <div class="tick-slider">
                                                    
                                                             <input
@@ -1267,26 +1331,120 @@
                                 <a class="nxt__btn btn-warning text-white" onclick="nextForm();">Siguiente</a>
                             </div>
                         </div>
-                        <p class="text-center page">Pag 3/5</p>
+                        <p class="text-center page">Pag 3/10</p>
                     </fieldset>
-                    <fieldset class="active__form" id="form5">
+                    <fieldset class="active__form" id="form5" class="form">
                         <div class="sub__title__container">
                             <p>Pag 5/5</p>
-                            <h2>Tu plan actual</h2>
-                            <p>Thanks for completing the form and for your time.Plss enter your email below and submit the
-                                form</p>
+                            <h2>¿Cuál es el porcentaje de costo en tu restaurante?
+                            </h2>
+                            <p>El porcentaje de costo es el porcentaje del precio de venta de tus productos que usas en
+                                matería prima. Por ejemplo si vendes tu plato promedio en $10.00, y el costo de los
+                                componentes es $4.00; tu porcetaje de costo es del 40%. Por lo general este indicador
+                                es del 35% o menos. </p>
                         </div>
     
                         <div class="input__container">
-                            <div>
                             
-                              </div>
-                              
+                            <div class="container-flex">
+                                <div class="item-flex chart_costo_promedio">
+                                    <canvas id="chart_costo_promedio"></canvas>
+                                </div>
+                                <div class="item-flex ">
+                                    
+                           
+                            <div class="row justify-content-md-center mb-5">
+                                <div class="col-xs-3 3">
+                                    <label for="tenedor_promedio"> Costo promedio %</label>
+                                    <div class="input-group number-spinner">
+                                        <span class="input-group-btn">
+                                            <button class="btn   btn-warning text-white"  data-dir="up"  >
+                                                <i class="fa   fa-plus " aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" class="form-control text-center" 
+                                          id="costo_promedio" value="35">
+                                        <span class="input-group-btn">
+                                            <button class="btn  btn-warning text-white"  data-dir="dwn"  >
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                              
+
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                                  
+                               
+                                </div>
+                            </div>
+
+
                             <div class="buttons">
                                 <a class="prev__btn" onclick="prevForm();">Regresar</a>
-                                <a class="nxt__btn btn-warning text-white" id="submitBtn" onclick="nextForm();">Siguiente</a>
+                                <a class="nxt__btn btn-warning text-white" onclick="nextForm();">Siguiente</a>
+
+                                <!-- a class="nxt__btn btn-warning text-white" id="submitBtn" onclick="nextForm();">Siguiente</a -->
                             </div>
     
+                        </div>
+                    </fieldset>
+
+
+                    <fieldset class="active__form" id="form6" class="form">
+                        <div class="sub__title__container">
+                         
+                            <h2>¿Cuál es el porcentaje de costo en tu restaurante?
+                            </h2>
+                            <p>El porcentaje de costo es el porcentaje del precio de venta de tus productos que usas en
+                                matería prima. Por ejemplo si vendes tu plato promedio en $10.00, y el costo de los
+                                componentes es $4.00; tu porcetaje de costo es del 40%. Por lo general este indicador
+                                es del 35% o menos. </p>
+                        </div>
+    
+                        <div class="input__container">
+                            
+                            <div class="container-flex">
+                                <div class="item-flex chart_costo_promedio">
+                                    <canvas id="chart_costo_promedio"></canvas>
+                                </div>
+                                <div class="item-flex ">
+                                    
+                           
+                            <div class="row justify-content-md-center mb-5">
+                                <div class="col-xs-3 3">
+                                    <label for="tenedor_promedio"> Costo promedio %</label>
+                                    <div class="input-group number-spinner">
+                                        <span class="input-group-btn">
+                                            <button class="btn   btn-warning text-white"  data-dir="up"  >
+                                                <i class="fa   fa-plus " aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" class="form-control text-center" 
+                                          id="costo_promedio" value="35">
+                                        <span class="input-group-btn">
+                                            <button class="btn  btn-warning text-white"  data-dir="dwn"  >
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                              
+
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                                  
+                               
+                                </div>
+                            </div>
+
+
+                            <div class="buttons">
+                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="nxt__btn btn-warning text-white" onclick="nextForm();">Siguiente</a>
+
+                                <!-- a class="nxt__btn btn-warning text-white" id="submitBtn" onclick="nextForm();">Siguiente</a -->
+                            </div>
+                            <p class="text-center">Pag 6/10</p>
                         </div>
                     </fieldset>
                 </div>
@@ -1296,8 +1454,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type='text/javascript' src='#'></script>
     <script type='text/javascript' src='#'></script>
@@ -1307,6 +1465,12 @@
     </script>
 
     <script src="app.js"></script>
+
+    <script type='text/javascript' src='#'>
+
+
+    </script>
+
 
 </body>
 
