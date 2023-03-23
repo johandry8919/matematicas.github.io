@@ -71,7 +71,8 @@ const camposRangeArray = Array.from(camposRange);
 ///Obtener todos los input de clientes y porcentaje
 const clientes = document.querySelectorAll('input[id^="clientes_l"]');
 const porcentajes = document.querySelectorAll('input[id^="porcentaje_m"]');
-
+const inputs_gatos_g = document.querySelectorAll('input[id^="gastogral"]');
+const camposRangeArraygatos_g = Array.from(inputs_gatos_g);
 ///Obtener todos los input de clientes y porcentaje
 const clientes2 = document.querySelectorAll('input[id^="clientes_c"]');
 const porcentajes2 = document.querySelectorAll('input[id^="porcentaje_c"]');
@@ -99,6 +100,12 @@ for (let campo of camposRangeArray) {
 for (let campo of camposRangeArrayClientes) {
   campo.addEventListener("input", actualizarSumaCamposClientes);
 }
+for (let campo of camposRangeArraygatos_g) {
+  campo.addEventListener("input", change_gastos_inputs);
+}
+
+
+
 
 /**GRAFICOS */
 
@@ -1296,10 +1303,12 @@ var iddfila=4;
 function agregar_fila_gastos() {
   iddfila++;
   let html=`
-  <tr>
+  <tr id="fila${iddfila}">
   <td>
       <div class="input-group mb-3">
       <div class="input-group-prepend">
+      <button onclick="eliminar_fila_gasto('fila${iddfila}')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i>
+      </button>
         <span class="input-group-text"></span>
 
       </div>
@@ -1322,7 +1331,39 @@ function agregar_fila_gastos() {
 </tr>
   `
 
-  $("#tabla_gasto_general > tbody").append(html)
+    $("#tabla_gasto_general > tbody").append(html)
+  let campo=  document.getElementById("gastogral"+iddfila)
+
+    campo.addEventListener("input", change_gastos_inputs);
   
+}
+
+function change_gastos_inputs(event) {
+  calcula_totales_gastos()
+}
+
+function eliminar_fila_gasto(fila) {
+
+  $("#"+fila).remove();
+  calcula_totales_gastos()
+}
+
+function calcula_totales_gastos(){
+
+  const inputs_gatos_g = document.querySelectorAll('input[id^="gastogral"]');
+const camposRangeArraygatos_g = Array.from(inputs_gatos_g);
+  const sumaValores = camposRangeArraygatos_g.reduce(
+    (acumulador, campo) => acumulador + parseInt(campo.value),
+    0
+  );
+
+  $("#total_gasto_general").val(sumaValores)
+
+  if (sumaValores > 100) {
+    mostrarEmoji(
+      false,
+      "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera"
+    );
+  }
 }
 
