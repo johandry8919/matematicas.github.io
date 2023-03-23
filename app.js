@@ -145,19 +145,68 @@ const ctx_chartplanfinanciero =  document.getElementById("chartplanfinanciero")
 .getContext("2d");
 
 const chartDataplanfinanciero  = {
-  labels: ["Objetivo y Costo"],
+  labels: ['Objetivo', 'Ingresos'],
+
   datasets: [
-    {
-      label: "Objetivo",
-      data: [porcentajeObjetivo],
-      backgroundColor: "rgba(75, 192, 192, 0.5)",
-    },
+    
     {
       label: "Costo",
-      data: [porcentajeCosto],
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      data: [35],
+      backgroundColor: "rgba(3, 155, 229, 0.5)",
     },
+    {
+      label: "Gatos generales",
+      data: [20],
+      backgroundColor: "rgba(255, 10, 102, 0.5)",
+    },
+    
+    {
+      label:  "gastos de personal",
+      data: [25],
+      backgroundColor: "rgba(244, 208, 63, 0.6)",
+    },
+    {
+      label: "Utilidad",
+      data: [20],
+      backgroundColor: " rgba(0, 255, 65, 0.5) ",
+    },{
+      label: "Ingresos",
+      data: [40], // Aquí se agregan los datos de ingresos
+      backgroundColor: "rgba(255, 99, 132, 0.5)", // Aquí se agrega el color de fondo
+    }
+    
+   
   ],
+};
+const chartOptionsplanfinanciero = {
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+      ticks: {
+        min: 0,
+        max: 100,
+      },
+    },
+ 
+  },
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          const label = context.dataset.label || "";
+
+          if (label) {
+            return label + ": " + context.formattedValue + "%";
+          } else {
+            return context.formattedValue + "%";
+          }
+        },
+      },
+    },
+  },
 };
 
 const ctx_costo_promedio = document
@@ -165,6 +214,12 @@ const ctx_costo_promedio = document
   .getContext("2d");
 
 
+  const chartplanfinanciero  = new Chart(ctx_chartplanfinanciero, {
+    type: "bar",
+    data: chartDataplanfinanciero,
+    options: chartOptionsplanfinanciero,
+  });
+  
 
 const chartDatactcosto_promedio = {
   labels: ["Objetivo y Costo"],
@@ -181,6 +236,8 @@ const chartDatactcosto_promedio = {
     },
   ],
 };
+
+
 
 const chartOptionsCosto = {
   scales: {
@@ -211,12 +268,6 @@ const chartOptionsCosto = {
     },
   },
 };
-
-const chartplanfinanciero  = new Chart(ctx_chartplanfinanciero, {
-  type: "bar",
-  data: chartDataplanfinanciero,
-  options: chartOptionsCosto,
-});
 
 
 const chartCosto = new Chart(ctx_costo_promedio, {
@@ -388,7 +439,7 @@ calcula_totales_empleados()
      */
   }  else if (viewId === 8) {
     const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
-    const gasto_maximo = Math.floor((25 * metaVentasMensual) /100);
+    const gasto_maximo = Math.floor((20 * metaVentasMensual) /100);
     const arriendo_local = Math.floor((7.5 * gasto_maximo) /100);
     const otros_gastos = Math.floor((7.5 * gasto_maximo) /100);
     let gastado=(arriendo_local+arriendo_local);
@@ -430,7 +481,7 @@ function event_tenedor_promedio(event) {
 
 function prevForm() {
 
-  console.log("helloprev");
+ ;
   viewId--;
   console.log(viewId);
   progressBar();
@@ -443,7 +494,8 @@ function prevForm() {
      
     } 
   }
-  document.querySelector(".nxt__btn").style.display = "block";
+
+  $('.nxt__btn').show();
 }
 
 function progressBar() {
@@ -1359,10 +1411,13 @@ const camposRangeArraygatos_g = Array.from(inputs_gatos_g);
 
   $("#total_gasto_general").val(sumaValores)
 
-  if (sumaValores > 100) {
+  const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
+  const gasto_maximo = Math.floor((sumaValores *100) /metaVentasMensual);
+  const gasto_promedio = Math.floor((25 * metaVentasMensual) /100);
+  if (gasto_maximo > 20) {
     mostrarEmoji(
       false,
-      "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera"
+      `Tu gasto estan en un ${gasto_maximo}%, el valor esta por encima del 20% de la industria que seria $${gasto_promedio} `
     );
   }
 }
