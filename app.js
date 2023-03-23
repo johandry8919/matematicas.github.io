@@ -1292,4 +1292,37 @@ if (porcentaje_costo > 25) {
   
 }
 
+var iddfila=4;
+function agregar_fila_gastos() {
+  iddfila++;
+  let html=`
+  <tr>
+  <td>
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"></span>
+
+      </div>
+      <input type="text" class="form-control"  id="textotrogastosg${iddfila}" value="">
+    </div>
+  </td>
+
+  <td>
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
+
+      </div>
+      <input type="text" class="form-control"   id="gastogral${iddfila}"  value="0">
+    </div>
+  </td>
+
+
+
+</tr>
+  `
+
+  $("#tabla_gasto_general > tbody").append(html)
+  
+}
 
