@@ -47,8 +47,8 @@ body {
     background-color: var(--primary-color);
     border-radius: 2rem;
     padding: 1rem;
-    min-width: 50vw ;
-    min-height: 60vh;
+    min-width: 80vw ;
+    min-height: 70vh;
 
 }
 
@@ -165,9 +165,9 @@ body {
 }
 
 .right__container {
-    width: 40vw;
+    width: 60vw;
     display: flex;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .right__container fieldset {
@@ -176,7 +176,7 @@ body {
 
 .sub__title__container {
 
-    padding: 1rem 0 1.2rem 0;
+    padding: 0.5rem 0 0.2rem 0;
     border-bottom: 1px solid #9d9fb3;
 }
 
@@ -188,7 +188,7 @@ body {
 }
 
 .sub__title__container p {
-    font-size: 1rem;
+    font-size: 0.75rem;
     color: var(--shadow-color);
 }
 
@@ -200,8 +200,11 @@ body {
 }
 .active__form {
     display: none;
-}
 
+}
+.fieldsetform{
+    background: white;
+}
 .input__container {
     width: 100%;
     display: flex;
@@ -537,10 +540,10 @@ a {
   
   .table td,
   .table th {
-    padding: 3px 8px;
+    padding: 1px 2px;
     border: 1px solid #ddd;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
   
   .table th {
@@ -604,6 +607,46 @@ a {
     box-sizing: border-box;
     resize: vertical;
     border: 1px solid #ced4da;
+  }
+.form-porcentaje{
+font-size:5vw;
+letter-spacing:0.1em;
+text-decoration:none;
+color:#363636;
+background:linear-gradient(to right,#363636 0%,#363636 100%);
+background-repeat: no-repeat;
+background-position: left 100%;
+transition-duration: 1s;
+background-size: 0 6%;
+
+}
+
+
+.form-porcentaje:hover{
+    background-size:100% 6%;
+}
+  #porcentaje_c1,
+  #porcentaje_c2,
+  #porcentaje_c3,
+  #porcentaje_c4,
+  #porcentaje_c5,
+  #porcentaje_c6,
+  #porcentaje_c7,
+  #clientes_c1,
+  #clientes_c2,
+  #clientes_c3,
+  #clientes_c4,
+  #clientes_c5,
+  #clientes_c6,
+  #clientes_c7
+  {
+  
+  
+    height: calc(1rem + 0.9rem + 2px);
+    padding: 0.1rem 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+ 
   }
 
   /***************************************************/
@@ -984,4 +1027,34 @@ input[type="range"]:active::-webkit-slider-runnable-track {
       .row {
         height: 100%;
       }
+      
+      /**VIDEO**/
+      .header-content {
+        z-index: 2;
+      }
+      .header-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .header-video video {
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      .header-overlay {
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #303952;
+        z-index: 1;
+        opacity: .85;
+      }
+      
+    
       
