@@ -34,16 +34,20 @@
 <body className='snippet-body'>
    
      
-        <div class="form__container  header-content">
+        <div class="form__container  ">
+            <div class="header-content">
+
+       
             <div class="title__container">
                 <h1>Matematicas para restaurantes</h1>
                 <p>Conviértete en un experto en la gestión financiera de tu restaurante</p>
             </div>
+        </div>
             <div class="body__container">
                 <div class="left__container">
                     <div class="side__titles">
                         <div class="title__name">
-                            <h3 class="In">Rentabilidad</h3>
+                            <h3 class="In">Utilidad</h3>
                             <p class="In">Meta de ingresos mensuales</p>
                         </div>
                         <div class="title__name">
@@ -124,8 +128,8 @@
                     <fieldset id="form1"  class=" fieldsetform animate__animated animate__zoomIn">
                         <div class="sub__title__container  ">
                          
-                            <h2 class="">¿Cuánto quieres ganar (rentabilidad) en el restaurante en
-                                un mes?</h2>
+                            <h2 class="">¿Cuánto quieres ganar en tu establecimiento 
+                                al mes?</h2>
                             <p class="animate__lightSpeedInRight">Ingresa tu objetivo de ingresos mensual</p>
                         </div>
     
@@ -134,7 +138,7 @@
                               
                                 <div class="row justify-content-md-center mb-5">
                                     <div class="col-md-6 col-xs-12">
-                                        <label for="rentabilidad"> Ingresos</label>
+                                        <label for="rentabilidad"> Utilidad Mes</label>
                                         <div class="input-group number-spinner">
                                             <span class="input-group-btn">
                                                 <button class="btn   btn-info text-white"  data-dir="up" >
@@ -154,15 +158,15 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="objetivo_mensual" >
-                            <a class="nxt__btn btn btn-info text-white" onclick="nextForm();"> Siguiente</a>
+                            <a class="nxt__btn btn btn-info text-white float-right" onclick="nextForm();"> Siguiente</a>
                         </div>
                         <p class="text-center page">Pag 1/9</p>
                     </fieldset>
                     <fieldset class="active__form fieldsetform animate__animated " id="form2">
                         <div class="sub__title__container">
                         
-                            <h2>Para ganar $<span class="valor_ganancia"></span> al mes, tu restaurante debe vender $<span class="valor_venta"></span>  al mes.</h2>
-                            <p> Para entender cómo llegas a $<span class="valor_ganancia2"></span> al mes, puedes manejar el tenedor “promedio de
+                            <h2>Para ganar $<span class="valor_ganancia"></span> de  al mes, tu restaurante debe vender $<span class="valor_venta"></span>  al mes.</h2>
+                            <p> Para entender cómo llegas a $<span class="valor_ganancia2"></span> de utlidad al mes, puedes manejar el tenedor “promedio de
                                 tu carta”. Cambia el valor en promedio que consume un cliente en tu local por cada
                                 visita cambiando el “tenedor promedio” aquí abajo.
                             </p>
@@ -195,7 +199,7 @@
                            
     
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
                             </div>
                             <p class="text-center page">Pag 2/9</p>
@@ -212,14 +216,44 @@
                         </div>
     
                         <div class="input__container">
-                            <div class="contenedor"  style=" overflow: hidden auto;   max-height: 55vh;">
+                     
+                                <div class="row">
+                            <div class="col-md-6">
+                           
+                                        <div class="pt-input-group">
+
+                                     
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="basic-addon1"> Total % de clientes semanales</span>
+                                                </div>
+                                                <input type="number" class="form-control" readonly id="sumaTotal" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                              </div>
+                                        </div>
+
+                                     
+                                
+                            </div>
+                            <div class="col-md-6">
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">Total clientes semanales</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="clienttotal" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                  </div>
+                                  
+                            </div>
+                                </div>
+                                
                                 <table class="table">
                                     <thead>
                                         <th></th>
-                                        <th> % de clientes a la semana</th>
+                                        <th> % de clientes por dia</th>
                                         <th>Clientes por dia</th>
                                     </thead>
                                     <tbody>
+                                       
                                         <tr>
                                             <td data-label="L">Lunes</td>
                                             <td data-label="%">
@@ -777,22 +811,7 @@
                                             </td>
                                         </tr>
                                             
-                                        <tr>
-                                            <td data-label="T">Total</td>
-                                            <td data-label="total">
-        
-        
-                                                <div class="pt-input-group">
-        
-                                                    <input type="number" class="pt-input sumaTotal" placeholder="0" value="100" id="sumaTotal" readonly>
-                                                </div>
-        
-        
-                                            </td>
-                                            <td data-label="Client x dia">
-                                                 <input readonly type="number"  value="500" class="pt-input clienttotal" placeholder="0"  id="clienttotal">
-                                                </td>
-                                        </tr>
+                                 
         
         
         
@@ -804,11 +823,11 @@
                                 <p id="mensajeSuma"></p>
                                 <br>
 
-                            </div>
+                    
                            
     
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
                             </div>
                             <p class="text-center page">Pag 3/9</p>
@@ -826,10 +845,13 @@
                         
                         <div class="input__container" >
                          
-                            <div class="row" style="overflow:  auto;   max-height: 55vh;">
-                                <div class=" col-xs-12 col-md-6 ">
-                        
-                                    
+                            <div class="row " >
+                                <div class=" col-xs-12 col-md-8 ">
+                                        <div class="row justify-content-center align-items-lg-center" style="height:15%" >
+
+                                        
+                                    <div class="col-6">
+                             
                               
                                         <label for="tenedor_promedio2"> Tenedor promedio</label>
                                         <div class="input-group number-spinner">
@@ -848,14 +870,51 @@
                                                 </button>
                                             </span>
                                         </div>
-                                        <div class="imagen-grafico" style="position: relative; height:30vh; width:32vw">
+                                                   
+                                    </div>
+                                        </div>
+
+                                        
+                                        <div class="imagen-grafico" style="position: relative; height:50vh; width:38vw">
                                             <canvas id="myChart"></canvas>
 
                                         </div>
                             
                                 </div>
                                                     
-                                <div class=" col-xs-12 col-md-6 ">
+                                <div class=" col-xs-12 col-md-4 ">
+                                    
+                                <div class="row" style="height: 22%">
+                                    <div class="col-md-12">
+                                   
+                                                <div class="pt-input-group">
+        
+                                             
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                        </div>
+                                                        <input type="number" class="form-control" readonly id="sumaTotal2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                                                                                             <span class="input-group-text" id="basic-addon1" style="font-size:0.75rem">  % de clientes semanales</span>
+
+                                                    </div>
+                                                </div>
+        
+                                             
+                                        
+                                    </div>
+                                    <div class="col-md-12">
+                                        
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                            </div>
+                                            <input type="number"  class="form-control" id="clienttotal2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                            <span class="input-group-text" id="basic-addon1"  style="font-size:0.75rem">Total clientes semanales</span>
+
+                                        </div>
+                                          
+                                    </div>
+                                        </div>
+                                        
                                     <table class="table">
                                         <thead>
                                             <th></th>
@@ -1330,23 +1389,7 @@
                                                 </td>
                                             </tr>
                                                 
-                                            <tr>
-                                                <td data-label="T">Total</td>
-                                                <td data-label="total">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <input type="number" class="pt-input" placeholder="0" value="100" id="sumaTotal2" readonly>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia">
-                                                     <input readonly type="number"  value="500" class="pt-input clienttotal" placeholder="0"  id="clienttotal2">
-                                                    </td>
-                                            </tr>
-            
+                                       
             
             
             
@@ -1362,7 +1405,7 @@
            
     
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
                             </div>
                         </div>
@@ -1421,7 +1464,7 @@
 
 
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
 
                                 <!-- a class="nxt__btn btn-info text-white" id="submitBtn" onclick="nextForm();">Siguiente</a -->
@@ -1494,7 +1537,7 @@
                                 
 
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
 
                                 <!-- a class="nxt__btn btn-info text-white" id="submitBtn" onclick="nextForm();">Siguiente</a -->
@@ -1817,7 +1860,7 @@
                             
 
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
 
                                 <!-- a class="nxt__btn btn-info text-white" id="submitBtn" onclick="nextForm();">Siguiente</a -->
@@ -1962,7 +2005,7 @@
                             
                         </div>
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
 
                                 <!-- a class="nxt__btn btn-info text-white" id="submitBtn" onclick="nextForm();">Siguiente</a -->
@@ -2022,7 +2065,7 @@
            
     
                             <div class="buttons">
-                                <a class="prev__btn" onclick="prevForm();">Regresar</a>
+                                <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
                             </div>
                         </div>

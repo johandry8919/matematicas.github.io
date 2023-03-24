@@ -32,6 +32,10 @@ var cgastos_empleadosInput = document.getElementById("gastos_empleados");
 var btn_gatos_empleado =  document.querySelector(".btn_gatos_empleado");
 var sueldo_promedio_finalInput = document.getElementById("sueldo_promedio_final").value;
 cgastos_empleadosInput.addEventListener("change", change_input_empleado);
+const inputs_clienttotal = document.getElementById("clienttotal");
+const inputs_clienttotal_2 = document.getElementById("clienttotal2");
+inputs_clienttotal.addEventListener("keyup", event_input_total_semanal);
+inputs_clienttotal_2.addEventListener("keyup", event_input_total_semanal2);
 btn_gatos_empleado.addEventListener("click", click_input_empleado);
 
 // Obtenemos todos los campos de entrada con la clase "calculocliente"
@@ -84,10 +88,10 @@ totalClientes2.addEventListener("change", actualizarPorcentajeTabla_2);
 // Asignar evento de cambio para cada input de clientes y porcentaje
 for (let i = 0; i < clientes.length; i++) {
   clientes[i].addEventListener("change", actualizarPorcentaje);
-  clientes2[i].addEventListener("change", actualizarPorcentajeTabla_2);
+  clientes2[i].addEventListener("keyup", actualizarPorcentajeTabla_2);
   if (porcentajes[i]) {
-    porcentajes[i].addEventListener("change", actualizarCliente);
-    porcentajes2[i].addEventListener("change", actualizarClienteTabla2);
+    porcentajes[i].addEventListener("keyup", actualizarCliente);
+    porcentajes2[i].addEventListener("keyup", actualizarClienteTabla2);
   }
 }
 
@@ -118,7 +122,7 @@ const chart = new Chart(ctx, {
     labels: ["Objetivo", "Plan actual"],
     datasets: [
       {
-        label: "Plan",
+        label:[],
         data: [0, 0],
         backgroundColor: ["rgba(54, 162, 235, 0.5)", "rgba(75, 192, 192, 0.5)"],
         borderWidth: 1,
@@ -241,15 +245,8 @@ const chartDatactcosto_promedio = {
 
 const chartOptionsCosto = {
   scales: {
-    x: {
-      stacked: true,
-    },
     y: {
-      stacked: true,
-      ticks: {
-        min: 0,
-        max: 100,
-      },
+      beginAtZero: true,
     },
   },
   plugins: {
@@ -500,8 +497,10 @@ function prevForm() {
 
 function progressBar() {
   for (let i = 0; i < icons.length; i++) {
-    if (i < viewId - 1) {
+    if (i < viewId ) {
+
       icons[i].classList.add("active");
+      console.log('iconactive',icons[i])
     } else {
       icons[i].classList.remove("active");
     }
@@ -775,6 +774,8 @@ function actualizarTotalesSumaClientes(id_campo_actual) {
   // Actualizar el elemento HTML que muestra la suma
 }
 
+
+
 // Función para actualizar la suma de los campos de entrada
 function actualizarSumaCamposClientes() {
   // Sumar los valores de los campos de entrada
@@ -825,7 +826,6 @@ function actualizar_rentabilidad() {
 function actualizarClienteTabla2(event) {
   const porcentaje = Math.round(event.target.value);
   console.log(" function actualizarClienteTabla2");
-
   const valorCliente = Math.round((porcentaje * totalClientes2.value) / 100);
   const clienteInput = document.querySelector(
     "#clientes_l" + event.target.dataset.id
@@ -834,6 +834,7 @@ function actualizarClienteTabla2(event) {
     "#clientes_c" + event.target.dataset.id
   );
   const sumaCamposElement = document.getElementById("sumaTotal2");
+
   clienteInput.value = valorCliente;
   clienteInput_2.value = valorCliente;
   const sumaValoresClientes = camposRangeArrayClientes2.reduce(
@@ -1422,3 +1423,31 @@ const camposRangeArraygatos_g = Array.from(inputs_gatos_g);
   }
 }
 
+function event_input_total_semanal(){
+  actualizarTotalesSumaClientes(0)
+}
+function event_input_total_semanal2(event){
+   const  clienttotal2 =event.target.value;
+
+  for (let campo of camposRange2) {
+   
+      const porcentaje = Math.round((campo.value * clienttotal2) / 100);
+      const porcentajeInput = document.querySelector(
+        "#clientes_l" + campo.dataset.id
+      );
+      const porcentajeInput_c = document.querySelector(
+        "#clientes_c" + campo.dataset.id
+      );
+      porcentajeInput.value = porcentaje;
+      porcentajeInput_c.value = porcentaje;
+    }
+
+    const SEMANAS_MES = 4;
+    const consumoPromedio = document.getElementById("tenedor_promedio2");
+    const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
+    const meta_alcanzada =
+    clienttotal2 * consumoPromedio.value * SEMANAS_MES;
+  
+    actualizarGrafico(metaVentasMensual, meta_alcanzada);
+  
+}
