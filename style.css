@@ -528,23 +528,65 @@ a {
 /**
 *table
 */
-
+#emoji-container{
+    position: absolute;
+    
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 #emoji-text {
-    margin-top: 0px;
-    color: #ff4e4e;
+    background: cornsilk;
+    font-size: 0.8rem;
+    margin-top: -41px;
+    color: chocolate;
     text-align: center;
+    left: 46px;
+    position: absolute;
+    width:40vw;
+    font-weight:600;
+    z-index: -1;
   }
   #emoji {
-
-    font-size: 4em;
+    padding-top: 20px;
+    background-color: transparent;
+    font-size: 2em;
+   
  
-    margin-left: 30%;
+    
   }
   
   #emoji img {
     transition: all 0.3s ease-in-out;
    margin-bottom: 0px;
   }
+
+  /* Anima el círculo */
+  #emoji {
+    animation: jump 1s ease-in-out infinite;
+
+  }
+  
+  @keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  /* Define la animación */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
   
 .table {
     width: 100%;

@@ -1,5 +1,5 @@
 const formIds = ["#form1", "#form2", "#form3", "#form4", "#form5","#form6","#form7","#form8","#form9"];
-const iconIds = ["#icon1", "#icon2", "#icon3", "#icon4", "#icon5", "#icon6","#icon7"];
+const iconIds = ["#icon1", "#icon2", "#icon3", "#icon4", "#icon5", "#icon6","#icon7","#icon8","#icon9"];
 const SEMANAS_MES = 4;
 let viewId = 1;
 const forms = formIds.map((id) => document.querySelector(id));
@@ -279,19 +279,20 @@ const chartCosto = new Chart(ctx_costo_promedio, {
 costoPromedioInput.addEventListener("input", () => {
   const nuevoCostoPromedio = parseFloat(costoPromedioInput.value);
   const objetivo_mensual  = document.querySelector("#objetivo_mensual").value;
+  const tenedor_promedio2  = document.querySelector("#tenedor_promedio2").value;
+  
   actualizarGraficoCosto(nuevoCostoPromedio);
 
   if (nuevoCostoPromedio > 35) {
-    const porcentajecosto= Math.round((nuevoCostoPromedio / objetivo_mensual) * 100);
+    const porcentajecosto= Math.floor((nuevoCostoPromedio * tenedor_promedio2) / 100);
+
     mostrarEmoji(
       false,
       `Tu costo está alto
   comparado con la
-      industria. De tu plato
+      industria. De  $${tenedor_promedio2} de tu plato
       promedio $${porcentajecosto} se
-      van en materia prima,
-      para un total de $
-     ${objetivo_mensual} por mes. `
+      van en materia prima Por lo general este indicador es del 35% o menos`
       
     );
     //alert('La suma de los campos no puede ser mayor a 100');
@@ -354,6 +355,15 @@ function nextForm() {
     const clienttotal = document.querySelector("#clienttotal").value;
     const meta_alcanzada = clienttotal * consumoPromedio * SEMANAS_MES;
     actualizarGrafico(metaVentasMensual, meta_alcanzada);
+  } else if (viewId === 5) {
+   
+
+    const consumoPromedio = document.querySelector("#tenedor_promedio2").value;
+    const clienttotal = document.querySelector("#clienttotal2").value;
+    const meta_alcanzada = clienttotal * consumoPromedio * SEMANAS_MES;
+  document.querySelector("#objetivo_mensual").value=Math.round(meta_alcanzada);
+  document.querySelector(".tenedor_promedio_p9").innerHTML='$'+consumoPromedio;
+  
   }
     /**
      * PASO 7
@@ -497,7 +507,11 @@ function prevForm() {
 
 function progressBar() {
   for (let i = 0; i < icons.length; i++) {
+    
     if (i < viewId ) {
+
+    
+
 
       icons[i].classList.add("active");
       console.log('iconactive',icons[i])
@@ -1401,28 +1415,25 @@ function eliminar_fila_gasto(fila) {
   calcula_totales_gastos()
 }
 
-function calcula_totales_gastos(){
 
-  const inputs_gatos_g = document.querySelectorAll('input[id^="gastogral"]');
-const camposRangeArraygatos_g = Array.from(inputs_gatos_g);
-  const sumaValores = camposRangeArraygatos_g.reduce(
-    (acumulador, campo) => acumulador + parseInt(campo.value),
-    0
-  );
+function calcula_totales_gastos() {
+  console.log('function calcula_totales_gastos')
+  const camposRangeArraygatos = Array.from(document.querySelectorAll('input[id^="gastogral"]'));
+    const sumaValores = camposRangeArraygatos.reduce((acumulador, campo) => acumulador + parseInt(campo.value), 0);
+  
+  
+  document.querySelector("#total_gasto_general").value = sumaValores;
+  
 
-  $("#total_gasto_general").val(sumaValores)
+  const objetivoMensual = parseInt( document.querySelector("#objetivo_mensual").value);
+  const gastoMaximo = Math.floor((sumaValores * 100) / objetivoMensual);
+  
 
-  const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
-  const gasto_maximo = Math.floor((sumaValores *100) /metaVentasMensual);
-  const gasto_promedio = Math.floor((25 * metaVentasMensual) /100);
-  if (gasto_maximo > 20) {
-    mostrarEmoji(
-      false,
-      `Tu gasto estan en un ${gasto_maximo}%, el valor esta por encima del 20% de la industria que seria $${gasto_promedio} `
-    );
+  const gastoPromedio =  (gastoMaximo *objetivoMensual) / 100;
+  if (gastoMaximo > 20) {
+    mostrarEmoji(false, `Tu gasto está en un ${gastoMaximo}%, el valor está por encima del 20% de la industria que sería $${gastoPromedio.toFixed(2)}`);
   }
 }
-
 function event_input_total_semanal(){
   actualizarTotalesSumaClientes(0)
 }

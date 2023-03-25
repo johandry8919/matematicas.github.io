@@ -41,7 +41,12 @@
             <div class="title__container">
                 <h1>Matematicas para restaurantes</h1>
                 <p>Conviértete en un experto en la gestión financiera de tu restaurante</p>
+                <div id="emoji-container">
+                    <div id="emoji" class="animate__animated    animate__shakeY"></div>
+                    <div id="emoji-text"></div>
+                  </div>
             </div>
+           
         </div>
             <div class="body__container">
                 <div class="left__container">
@@ -58,6 +63,9 @@
                             <h3>Objetivos de clientes</h3>
                             <p> Calculo de clientes por dia</p>
                         </div>
+                        <div class="title__name">
+                            <h3>Resumen del plan</h3>
+                          </div>
                         <div class="title__name">
                             <h3>Porcentaje de costo </h3>
                             <p>Costos de tu restaurant</p>
@@ -79,10 +87,7 @@
                             <h3>Plan financiero</h3>
                             <p>Listo</p>
                         </div>
-                        <div id="emoji-container ">
-                            <div id="emoji" class="animate__animated    animate__shakeY"></div>
-                            <div id="emoji-text"></div>
-                          </div>
+                       
                     </div>
                     <div class="progress__bar__container">
                         <ul>
@@ -99,23 +104,27 @@
     
                             </li>
                             <li id="icon4">
+                                <ion-icon name="calendar-outline"></ion-icon>
+    
+                            </li>
+                            <li id="icon5">
                                 <ion-icon name="wallet-outline"></ion-icon>
                             
                             </li>
-                            <li id="icon5">
+                            <li id="icon6">
                                 <ion-icon name="people-outline"></ion-icon>
     
                             
                             </li>
-                            <li id="icon6">
+                            <li id="icon7">
                                 <ion-icon name="cash-outline"></ion-icon>    
                             
                             </li>
-                            <li id="icon7">
+                            <li id="icon8">
                                 <ion-icon name="calculator-outlin"></ion-icon>    
                             
                             </li>
-                            <li id="icon8">
+                            <li id="icon9">
                                 <ion-icon name="cash-outline"></ion-icon>    
                             
                             </li>
@@ -128,7 +137,7 @@
                     <fieldset id="form1"  class=" fieldsetform animate__animated animate__zoomIn">
                         <div class="sub__title__container  ">
                          
-                            <h2 class="">¿Cuánto quieres ganar en tu establecimiento 
+                            <h2 class="">¿Cuánto quieres de utilidad en tu establecimiento 
                                 al mes?</h2>
                             <p class="animate__lightSpeedInRight">Ingresa tu objetivo de ingresos mensual</p>
                         </div>
@@ -165,7 +174,7 @@
                     <fieldset class="active__form fieldsetform animate__animated " id="form2">
                         <div class="sub__title__container">
                         
-                            <h2>Para ganar $<span class="valor_ganancia"></span> de  al mes, tu restaurante debe vender $<span class="valor_venta"></span>  al mes.</h2>
+                            <h2>Para  llegar a $<span class="valor_ganancia"></span> de utilidad al mes, tu Establecimiento debe vender $<span class="valor_venta"></span>  al mes.</h2>
                             <p> Para entender cómo llegas a $<span class="valor_ganancia2"></span> de utlidad al mes, puedes manejar el tenedor “promedio de
                                 tu carta”. Cambia el valor en promedio que consume un cliente en tu local por cada
                                 visita cambiando el “tenedor promedio” aquí abajo.
@@ -211,7 +220,7 @@
                             <h2>Objetivos por dia</h2>
                             <p>En base a tu tenedor promedio, hemos calculado cuantos clientes debes atender cada
                                 día de la semana para que llegues al objetivo. Ajusta los valores para reflejar mejor la
-                                realidad de tu plan de restaurante.
+                                realidad de tu plan de Establecimiento.
                             </p>
                         </div>
     
@@ -1414,51 +1423,46 @@
                     <fieldset class="active__form fieldsetform animate__animated " id="form5" >
                         <div class="sub__title__container">
                   
-                            <h2>¿Cuál es el porcentaje de costo en tu restaurante?
+                            <h2>¿Cuál es el porcentaje de costo en tu Establecimiento?
                             </h2>
                             <p>El porcentaje de costo es el porcentaje del precio de venta de tus productos que usas en
-                                matería prima. Por ejemplo si vendes tu plato promedio en $10.00, y el costo de los
+                                matería prima. Por ejemplo si vendes tu plato promedio en <span class="tenedor_promedio_p9"></span>, y el costo de los
                                 componentes es $4.00; tu porcetaje de costo es del 40%. Por lo general este indicador
                                 es del 35% o menos. </p>
                         </div>
     
                         <div class="input__container">
                             
+                            <div class="row justify-content-md-center ">
+                                <div class="col-md-4 col-xs-12">
+                                    <label for="tenedor_promedio"> Costo promedio %</label>
+                                    <div class="input-group number-spinner">
+                                        <span class="input-group-btn">
+                                            <button class="btn   btn-info text-white"  onclick="click_input_costo()" data-dir="up"  >
+                                                <i class="fa   fa-plus " aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" class="form-control text-center" 
+                                          id="costo_promedio" value="35">
+                                        <span class="input-group-btn">
+                                            <button  onclick="click_input_costo()" class="btn  btn-info text-white"  data-dir="dwn"  >
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                              
+
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row justify-content-center align-items-lg-center "  >
                                
-                                <div class=" col-xs-12 col-md-6 ">
+                                <div class=" col-xs-12 col-md-8 ">
                                     <div class="chart-container" style="position: relative; height:50vh; width:40vw">
                                         <canvas id="chart_costo_promedio"></canvas>
                                     </div>
                                    
                                 </div>
-                                <div class=" col-xs-12 col-md-6 ">
-                                    
-                           
-                                    <div class="row justify-content-md-center mb-5">
-                                        <div class="col-md-6 col-xs-12">
-                                            <label for="tenedor_promedio"> Costo promedio %</label>
-                                            <div class="input-group number-spinner">
-                                                <span class="input-group-btn">
-                                                    <button class="btn   btn-info text-white"  onclick="click_input_costo()" data-dir="up"  >
-                                                        <i class="fa   fa-plus " aria-hidden="true"></i>
-                                                    </button>
-                                                </span>
-                                                <input type="text" class="form-control text-center" 
-                                                  id="costo_promedio" value="35">
-                                                <span class="input-group-btn">
-                                                    <button  onclick="click_input_costo()" class="btn  btn-info text-white"  data-dir="dwn"  >
-                                                        <i class="fa fa-minus" aria-hidden="true"></i>
-                                                      
-        
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                          
-                                       
-                                        </div>
+                             
                              
                             </div>
 
@@ -1554,7 +1558,7 @@
                             </h2>
                             <p>De acuerdo a tu objetivo de ventas y a los estándar de la industria, puedes gastar hasta
                                 $<span class="valor_ganancia4"></span> en personal cada mes. Usa la siguiente tabla para proyectar la cantidad de
-                                empleados del restaurante. 
+                                empleados del Establecimiento. 
                                   </p>
                         </div>
     
@@ -2016,9 +2020,9 @@
                     <fieldset class="active__form fieldsetform animate__animated " id="form9">
                         <div class="sub__title__container">
              
-                            <h2>!Listo! Mira el plan financiero de tu restaurante.
+                            <h2>!Listo! Mira el plan financiero de tu Establecimiento.
                             </h2>
-                            <p>Hemos generado con tus datos, el plan financiero/matemático de tu restaurante. Puedes
+                            <p>Hemos generado con tus datos, el plan financiero/matemático de tu Establecimiento. Puedes
                                 explorar el plan dando click en cada sección del grafico. Adicionalmente puedes exportarlo a
                                 PDF o generar una cuenta gratuita para grabarlo y hacer seguimiento de su cumplimiento. 
                                  </p>
