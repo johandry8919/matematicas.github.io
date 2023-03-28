@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/css/emojione.min.css" integrity="sha512-stXuDISyaxZUf+TKKuWLknpyCteOwkgqm4eqXCRuryS1d9aqKj1VIuDRHevj4DC8voNTwY/mHklbyoRTkRdulQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link
     rel="stylesheet"
@@ -65,6 +65,7 @@
                         </div>
                         <div class="title__name">
                             <h3>Resumen del plan</h3>
+                            <p>  Tenedor promedio -Clientes semanales</p>
                           </div>
                         <div class="title__name">
                             <h3>Porcentaje de costo </h3>
@@ -91,7 +92,7 @@
                     </div>
                     <div class="progress__bar__container">
                         <ul>
-                            <li class="active" id="icon1">
+                            <li class="active pactual" id="icon1">
     
                                 <ion-icon name="calculator-outline"></ion-icon>
     
@@ -112,16 +113,17 @@
                             
                             </li>
                             <li id="icon6">
+                                <ion-icon name="cash-outline"></ion-icon>    
+                            
+                            </li>
+                            <li id="icon7">
                                 <ion-icon name="people-outline"></ion-icon>
     
                             
                             </li>
-                            <li id="icon7">
-                                <ion-icon name="cash-outline"></ion-icon>    
-                            
-                            </li>
+                           
                             <li id="icon8">
-                                <ion-icon name="calculator-outlin"></ion-icon>    
+                                <ion-icon name="cart-outline"></ion-icon>
                             
                             </li>
                             <li id="icon9">
@@ -154,8 +156,8 @@
                                                     <i class="fa fa-plus " aria-hidden="true"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" class="form-control text-center  form-control-sm" 
-                                              id="rentabilidad" value="1000">
+                                            <input type="number" class="form-control text-center  form-control-sm" 
+                                              id="rentabilidad" placeholder="Ingrese un valor" >
                                             <span class="input-group-btn">
                                                 <button class="btn  btn-info text-white"  data-dir="dwn"  >
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
@@ -171,7 +173,7 @@
                         </div>
                         <p class="text-center page">Pag 1/9</p>
                     </fieldset>
-                    <fieldset class="active__form fieldsetform animate__animated " id="form2">
+                    <fieldset class="active__form fieldsetform animate__animated imprimirpdf" id="form2">
                         <div class="sub__title__container">
                         
                             <h2>Para  llegar a $<span class="valor_ganancia"></span> de utilidad al mes, tu Establecimiento debe vender $<span class="valor_venta"></span>  al mes.</h2>
@@ -842,7 +844,7 @@
                             <p class="text-center page">Pag 3/9</p>
                         </div>
                     </fieldset>
-                    <fieldset class="active__form fieldsetform animate__animated " id="form4">
+                    <fieldset class="active__form fieldsetform animate__animated imprimirpdf " id="form4">
                         <div class="sub__title__container">
              
                             <h2>Tu plan actual</h2>
@@ -916,7 +918,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                             </div>
-                                            <input type="number"  class="form-control" id="clienttotal2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                            <input type="number"  class="form-control" id="clienttotal2" placeholder="0" aria-label="" aria-describedby="basic-addon1">
                                             <span class="input-group-text" id="basic-addon1"  style="font-size:0.75rem">Total clientes semanales</span>
 
                                         </div>
@@ -1420,7 +1422,7 @@
                         </div>
                         <p class="text-center page">Pag 4/9</p>
                     </fieldset>
-                    <fieldset class="active__form fieldsetform animate__animated " id="form5" >
+                    <fieldset class="active__form fieldsetform animate__animated imprimirpdf " id="form5" >
                         <div class="sub__title__container">
                   
                             <h2>¿Cuál es el porcentaje de costo en tu Establecimiento?
@@ -1457,7 +1459,7 @@
                             <div class="row justify-content-center align-items-lg-center "  >
                                
                                 <div class=" col-xs-12 col-md-8 ">
-                                    <div class="chart-container" style="position: relative; height:50vh; width:40vw">
+                                    <div class="chart-container imagen-grafico-costo" style="position: relative; height:50vh; width:40vw">
                                         <canvas id="chart_costo_promedio"></canvas>
                                     </div>
                                    
@@ -1550,7 +1552,7 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="active__form fieldsetform animate__animated " id="form7">
+                    <fieldset class="active__form fieldsetform animate__animated imprimirpdf" id="form7">
                         <div class="sub__title__container">
                          
                             <h2>Ahora exploremos la cantidad de personal que necesitas. 
@@ -1872,7 +1874,7 @@
                             <p class="text-center page">Pag 7/9</p>
                         </div>
                     </fieldset>
-                    <fieldset class="active__form fieldsetform animate__animated " id="form8">
+                    <fieldset class="active__form fieldsetform animate__animated imprimirpdf" id="form8">
                         <div class="sub__title__container">
                          
                             <h2>Finalmente, validemos como están tus gastos generales
@@ -2017,7 +2019,7 @@
                             <p class="text-center page">Pag 8/9</p>
                         </div>
                     </fieldset>
-                    <fieldset class="active__form fieldsetform animate__animated " id="form9">
+                    <fieldset class="active__form fieldsetform animate__animated imprimirpdf " id="form9">
                         <div class="sub__title__container">
              
                             <h2>!Listo! Mira el plan financiero de tu Establecimiento.
@@ -2036,9 +2038,11 @@
                         
                                                                   
                                      
-                                    <div class="imagen-grafico" style="position: relative; height:35vh; width:32vw">
+                                    <div class="imagen-grafico-chartplanfinanciero d-flex flex-row" style="position: relative; height:35vh; width:32vw" >
 
                                     <canvas id="chartplanfinanciero"></canvas>
+                    
+                                    
                                 </div>
 
                                 </div>
@@ -2046,21 +2050,25 @@
                                 <div class=" col-xs-12 col-md-6 ">
                                     <div class="row justify-content-md-center mb-5">
                                         <div class="col-md-6 col-xs-12">    
-                                            <h2>Tu Utilidad</h2>  
-                                            <h2 class="form-porcentaje">18%</h2>  
-                                            <h2 class="form-porcentaje">$4,200</h2>  
+                                            <h2 class="titulo_utilidad">Tu Utilidad</h2>  
+                                            <h2 class="form-porcentaje titulo-porcentaje">18%</h2>  
+                                            <h2 class="form-porcentaje titulo-cantidad">$4,200</h2>  
                                         </div>     
                                      </div>
                      
                                 </div>                                                                     
                             </div>
                             <div class="row justify-content-md-center mb-5">
-                                <div class="col-md-4 col-xs-6">    
-                                    <button type="button" class="btn btn-secondary" onclick="imprimirpdf()">Descargar PDF</button>
+                                <div class="col-md-4 col-xs-4">    
+                                    <button type="button" class="btn btn-info" onclick="imprimirpdf()">Descargar plan financiero PDF</button>
 
-                                </div>     
-                                <div class="col-md-4 col-xs-6">    
-                                    <button type="button" class="btn btn-primary">Guadar plan para seguimiento</button>
+                                </div>    
+                                <div class="col-md-4 col-xs-4">    
+                                    <button type="button" class="btn btn-secondary" onclick="enviar_correo()">Enviar Correo</button>
+
+                                </div>      
+                                <div class="col-md-4 col-xs-4">    
+                                    <a type="button" href="login.html" class="btn btn-primary">Guadar plan para seguimiento</a>
 
                                 </div> 
                              </div>

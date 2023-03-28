@@ -4,7 +4,10 @@ const SEMANAS_MES = 4;
 let viewId = 1;
 const forms = formIds.map((id) => document.querySelector(id));
 const icons = iconIds.map((id) => document.querySelector(id));
-
+var VALIDACION={
+  pasa:true,
+  msg:""
+};
 window.onload = init;
 window.addEventListener("resize", onResize);
 
@@ -145,11 +148,14 @@ const total = objetivo + costo; // valor total
 const porcentajeObjetivo = Math.round((objetivo / total) * 100);
 const porcentajeCosto = Math.round((costo / total) * 100);
 
+
+
+
 const ctx_chartplanfinanciero =  document.getElementById("chartplanfinanciero")
 .getContext("2d");
 
 const chartDataplanfinanciero  = {
-  labels: ['Objetivo', 'Ingresos'],
+  labels: ['Resultado'],
 
   datasets: [
     
@@ -157,6 +163,8 @@ const chartDataplanfinanciero  = {
       label: "Costo",
       data: [35],
       backgroundColor: "rgba(3, 155, 229, 0.5)",
+    
+    borderWidth: 1
     },
     {
       label: "Gatos generales",
@@ -165,7 +173,7 @@ const chartDataplanfinanciero  = {
     },
     
     {
-      label:  "gastos de personal",
+      label:  "Gastos de personal",
       data: [25],
       backgroundColor: "rgba(244, 208, 63, 0.6)",
     },
@@ -173,29 +181,18 @@ const chartDataplanfinanciero  = {
       label: "Utilidad",
       data: [20],
       backgroundColor: " rgba(0, 255, 65, 0.5) ",
-    },{
-      label: "Ingresos",
-      data: [40], // Aquí se agregan los datos de ingresos
-      backgroundColor: "rgba(255, 99, 132, 0.5)", // Aquí se agrega el color de fondo
     }
-    
    
   ],
 };
 const chartOptionsplanfinanciero = {
   scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-      ticks: {
-        min: 0,
-        max: 100,
-      },
-    },
- 
-  },
+    yAxes: [{
+        ticks: {
+            beginAtZero: true
+        }
+    }],
+},
   plugins: {
     tooltip: {
       callbacks: {
@@ -213,16 +210,32 @@ const chartOptionsplanfinanciero = {
   },
 };
 
+const chartplanfinanciero  = new Chart(ctx_chartplanfinanciero, {
+  type: "bar",
+  data: chartDataplanfinanciero,
+  options: chartOptionsplanfinanciero,
+});
+
+
+$('#chartplanfinanciero').on('click', function(e) {
+  var activePoints = chartplanfinanciero.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+  var firstPoint = activePoints[0];
+  if (firstPoint !== undefined) {
+      var label = chartplanfinanciero.data.labels[firstPoint.datasetIndex];
+   
+      var value = chartplanfinanciero.data.datasets[firstPoint.datasetIndex];
+      console.log(value.label)
+      click_actulizar_text_grafico(value.label)
+   
+  }
+});
+
 const ctx_costo_promedio = document
   .getElementById("chart_costo_promedio")
   .getContext("2d");
 
 
-  const chartplanfinanciero  = new Chart(ctx_chartplanfinanciero, {
-    type: "bar",
-    data: chartDataplanfinanciero,
-    options: chartOptionsplanfinanciero,
-  });
+  
   
 
 const chartDatactcosto_promedio = {
@@ -276,7 +289,9 @@ const chartCosto = new Chart(ctx_costo_promedio, {
 
 
 
+
 costoPromedioInput.addEventListener("input", () => {
+  console.log('costoPromedioInput')
   const nuevoCostoPromedio = parseFloat(costoPromedioInput.value);
   const objetivo_mensual  = document.querySelector("#objetivo_mensual").value;
   const tenedor_promedio2  = document.querySelector("#tenedor_promedio2").value;
@@ -285,7 +300,14 @@ costoPromedioInput.addEventListener("input", () => {
 
   if (nuevoCostoPromedio > 35) {
     const porcentajecosto= Math.floor((nuevoCostoPromedio * tenedor_promedio2) / 100);
-
+    console.log('porcentajecosto',porcentajecosto)
+  
+    VALIDACION.pasa=false;
+    VALIDACION.msg=  `Tu costo está alto
+    comparado con la
+        industria. De  $${tenedor_promedio2} de tu plato
+        promedio $${porcentajecosto} se
+        van en materia prima Por lo general este indicador es del 35% o menos`;
     mostrarEmoji(
       false,
       `Tu costo está alto
@@ -297,6 +319,7 @@ costoPromedioInput.addEventListener("input", () => {
     );
     //alert('La suma de los campos no puede ser mayor a 100');
   } else {
+    VALIDACION.pasa=true;
     mostrarEmoji(true);
   }
 });
@@ -305,19 +328,19 @@ costoPromedioInput.addEventListener("input", () => {
 function click_input_costo(){
   const nuevoCostoPromedio = parseFloat(costoPromedioInput.value);
   const objetivo_mensual  = document.querySelector("#objetivo_mensual").value;
+  const tenedor_promedio2  = document.querySelector("#tenedor_promedio2").value;
   actualizarGraficoCosto(nuevoCostoPromedio);
 
   if (nuevoCostoPromedio > 35) {
-    const porcentajecosto= Math.round((nuevoCostoPromedio / objetivo_mensual) * 100);
+ 
+    const porcentajecosto= Math.floor((nuevoCostoPromedio * tenedor_promedio2) / 100);
     mostrarEmoji(
       false,
       `Tu costo está alto
   comparado con la
-      industria. De tu plato
+      industria. De  $${tenedor_promedio2}  de tu plato
       promedio $${porcentajecosto} se
-      van en materia prima,
-      para un total de $
-     ${objetivo_mensual} por mes. `
+      van en materia prima. `
       
     );
     //alert('La suma de los campos no puede ser mayor a 100');
@@ -326,21 +349,98 @@ function click_input_costo(){
   }
 }
 
+function click_actulizar_text_grafico(label) {
+  var costo_promedio=  $("#costo_promedio").val()
+  var total_gasto_general=  $("#total_gasto_general").val()
+  var gastos_empleados=  $("#gastos_empleados").val()
+  const objetivo_mensual  = document.querySelector("#objetivo_mensual").value;
+  var  monto_costo = Math.floor((costo_promedio* objetivo_mensual) /100)
+  var porcentaje_gasto=  Math.floor((total_gasto_general*100) / objetivo_mensual);
+  var porcentaje_gasto_personal=  Math.floor((gastos_empleados*100) / objetivo_mensual);
+ var porcentaje_utilidad = 100 - porcentaje_gasto_personal-porcentaje_gasto-costo_promedio;
+ var monto_utilidad = Math.floor((porcentaje_utilidad * objetivo_mensual) /100);
+
+
+  if(label=="Costo"){
+  
+    $(".titulo_utilidad").html("Costo")
+    $(".titulo-porcentaje").html(costo_promedio+"%")
+    $(".titulo-cantidad").html("$"+monto_costo)
+
+
+  }else if(label=="Gatos generales"){ 
+    
+    $(".titulo_utilidad").html("Gastos General")
+    $(".titulo-porcentaje").html(porcentaje_gasto +"%")
+    $(".titulo-cantidad").html("$"+total_gasto_general)
+  }else if(label=="Gastos de personal"){
+    $(".titulo_utilidad").html("Gastos de perosonal")
+    $(".titulo-porcentaje").html(porcentaje_gasto_personal+"%")
+    $(".titulo-cantidad").html("$"+monto_utilidad)
+  
+  }else if(label=="Utilidad"){
+    $(".titulo_utilidad").html("Utilidad")
+    $(".titulo-porcentaje").html(porcentaje_utilidad+"%")
+    $(".titulo-cantidad").html("$"+monto_utilidad)
+  }
+
+}
 /***GEFIC */
 function nextForm() {
-
   viewId++;
-  progressBar();
-  displayForms();
+
 
   console.log(viewId);
+  if (viewId === 1) {
 
-  if (viewId === 2) {
+  }else if (viewId === 2) {
+    const rentabilidad = document.getElementById("rentabilidad");
+    if (rentabilidad.value == "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo  es requerido',
+ 
+      })
+      viewId--;
+      return false;
+    } else if (isNaN(rentabilidad.value)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo debe ser un numero',
+ 
+      })
+      viewId--;
+      return false;
+    } 
     actualizar_rentabilidad();
     /**
      * PASO 3
      */
   } else if (viewId === 3) {
+
+
+    const tenedor_promedio = document.getElementById("tenedor_promedio");
+    if (tenedor_promedio.value == "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo  es requerido',
+ 
+      })
+      viewId--;
+      return false;
+    } else if (isNaN(tenedor_promedio.value)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo debe ser un numero',
+ 
+      })
+      viewId--;
+      return false;
+    } 
     // calcular promedio semanal
     const objetivoMensual = document.querySelector("#objetivo_mensual").value;
     const consumoPromedio = document.querySelector("#tenedor_promedio").value;
@@ -349,6 +449,17 @@ function nextForm() {
      * PASO 4
      */
   } else if (viewId === 4) {
+   
+    if(!VALIDACION.pasa){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: VALIDACION.msg,
+ 
+      })
+      
+      return false;
+    }
     actualizar_tabla_paso_4();
     const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
     const consumoPromedio = document.querySelector("#tenedor_promedio").value;
@@ -365,6 +476,7 @@ function nextForm() {
   document.querySelector(".tenedor_promedio_p9").innerHTML='$'+consumoPromedio;
   
   }
+
     /**
      * PASO 7
      */
@@ -461,12 +573,18 @@ calcula_totales_empleados()
     
   }else if(viewId == 9){
 
- 
+    actualizarGrafico_final()
     $('.nxt__btn').hide();
   }
 
-
+ 
+  progressBar();
+  displayForms();
 }
+
+
+
+
 
 function click_tenedor_promedio() {
   const tenenedo_promedio_2 =
@@ -508,17 +626,24 @@ function prevForm() {
 function progressBar() {
   for (let i = 0; i < icons.length; i++) {
     
-    if (i < viewId ) {
-
     
-
-
+    if (i < viewId ) {   
       icons[i].classList.add("active");
+
+
+
       console.log('iconactive',icons[i])
     } else {
       icons[i].classList.remove("active");
     }
+    icons[i].classList.remove("pactual");
+    
+    
   }
+
+  icons[viewId-1].classList.add("pactual");
+
+
 }
 
 function displayForms() {
@@ -675,12 +800,16 @@ function actualizarSumaCampos() {
 
   // Verificar si la suma es mayor a 100
   if (sumaValores > 100) {
+    VALIDACION.pasa=false;
+    VALIDACION.msg= "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera";
+
     mostrarEmoji(
       false,
       "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera"
     );
     //alert('La suma de los campos no puede ser mayor a 100');
   } else {
+    VALIDACION.pasa=true;
     mostrarEmoji(true);
   }
 }
@@ -871,6 +1000,9 @@ function actualizarClienteTabla2(event) {
   actualizarGrafico(metaVentasMensual, meta_alcanzada);
   // Verificar si la suma es mayor a 100
   if (sumaValores > 100) {
+    VALIDACION.pasa=false;
+    VALIDACION.msg= "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera";
+
     mostrarEmoji(
       false,
       "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera"
@@ -878,6 +1010,7 @@ function actualizarClienteTabla2(event) {
     //alert('La suma de los campos no puede ser mayor a 100');
   } else {
     mostrarEmoji(true);
+    VALIDACION.pasa=false;
   }
   for (let campo of camposRange2) {
     if (event.target.dataset.id !== campo.dataset.id) {
@@ -924,7 +1057,9 @@ function actualizarPorcentajeTabla_2(event) {
     const porcentajeInput_2 = document.querySelector(
       "#porcentaje_c" + event.target.dataset.id
     );
+    if(porcentajeInput)
     porcentajeInput.value = porcentaje;
+    if(porcentajeInput_2)
     porcentajeInput_2.value = porcentaje;
 
     // Actualizar el elemento HTML que muestra la suma
@@ -950,12 +1085,16 @@ function actualizarPorcentajeTabla_2(event) {
 
   // Verificar si la suma es mayor a 100
   if (sumaValores > 100) {
+    VALIDACION.pasa=false;
+    VALIDACION.msg= "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera";
+
     mostrarEmoji(
       false,
       "La suma de los campos  de porcentaje no puede ser mayor a 100% <br> Puedes ajustar el porcetaje segun se requiera"
     );
     //alert('La suma de los campos no puede ser mayor a 100');
   } else if (meta_alcanzada < metaVentasMensual) {
+    VALIDACION.pasa=false;
     mostrarEmoji(
       false,
       "Incrementa el numerero de clientes  por dia para alcanzar tu objetivo"
@@ -1077,6 +1216,28 @@ function calcularClientesPorDia(consumoPromedio, metaVentasMensual) {
   actualizarSumaCampos();
 }
 
+function actualizarGrafico_final() {
+  
+  var costo_promedio=  $("#costo_promedio").val()
+  var total_gasto_general=  $("#total_gasto_general").val()
+  var gastos_empleados=  $("#gastos_empleados").val()
+  const objetivo_mensual  = document.querySelector("#objetivo_mensual").value;
+  var  monto_costo = Math.floor((costo_promedio* objetivo_mensual) /100)
+  var porcentaje_gasto=  Math.floor((total_gasto_general*100) / objetivo_mensual);
+  var porcentaje_gasto_personal=  Math.floor((gastos_empleados*100) / objetivo_mensual);
+ var porcentaje_utilidad = 100 - porcentaje_gasto_personal-porcentaje_gasto-costo_promedio;
+ var monto_utilidad = Math.floor((porcentaje_utilidad * objetivo_mensual) /100);
+ var nuevosDatos=[costo_promedio,porcentaje_gasto,porcentaje_gasto_personal,porcentaje_utilidad];
+
+ $(".titulo_utilidad").html("Utilidad")
+ $(".titulo-porcentaje").html(porcentaje_utilidad+"%")
+ $(".titulo-cantidad").html("$"+monto_utilidad)
+ chartplanfinanciero.data.datasets[0].data = nuevosDatos;
+
+
+  chartplanfinanciero.update();
+}
+
 function actualizarGrafico(objetivo, plan) {
   let backgroundColor = "rgba(75, 192, 192, 0.5)"; // verde por defecto
   if (plan < objetivo) {
@@ -1144,20 +1305,30 @@ function imprimirpdf(){
 var contenidoPDF = '';
 var canvas = document.getElementById('myChart');
 var chartImage = canvas.toDataURL();
-
 chartImage = '<img with="40%" src="' + chartImage + '" >';
-
 $(".imagen-grafico").html(chartImage);
 
+var canvas_costo_promedio = document.getElementById('chart_costo_promedio');
+var chartImageCosto_promedio  = canvas_costo_promedio.toDataURL();
+chartImageCosto_promedio = '<img with="40%" src="' + chartImageCosto_promedio + '" >';
+$(".imagen-grafico-costo").html(chartImageCosto_promedio);
+
+
+var canvas_plan_promedio = document.getElementById('chartplanfinanciero');
+var chartImageplan  = canvas_plan_promedio.toDataURL();
+chartImageplan = '<img with="40%" src="' + chartImageplan + '" >';
+$(".imagen-grafico-chartplanfinanciero").html(chartImageplan);
+
+
 // Iterar a través de cada etiqueta <fieldset> y agregar su contenido a la variable
-$('fieldset').each(function() {
+$('.imprimirpdf').each(function() {
   contenidoPDF += '<div style="page-break-after:always">' + $(this).html() + '</div>';
 });
 
 
 var opt = {
   margin:       0.1,
-  filename:     'myfile.pdf',
+  filename:     'plan_financiero.pdf',
   image:        { type: 'jpeg', quality: 0.98 },
   html2canvas:  { scale: 2 },
   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
@@ -1165,6 +1336,11 @@ var opt = {
 
 // New Promise-based usage:
 html2pdf().set(opt).from(contenidoPDF).save();
+/*html2pdf().set(opt).from(contenidoPDF).toPdf().then(function(pdf) {
+  // Aquí tienes el PDF generado como un objeto ArrayBuffer
+  // Puedes enviarlo mediante AJAX
+});*/
+
 
 // Old monolithic-style usage:
 //html2pdf(contenidoPDF, opt);
@@ -1460,5 +1636,101 @@ function event_input_total_semanal2(event){
     clienttotal2 * consumoPromedio.value * SEMANAS_MES;
   
     actualizarGrafico(metaVentasMensual, meta_alcanzada);
+  
+}
+var procesado=false;
+function enviar_correo() {
+
+  Swal.fire({
+    title: '<strong>Ingrese su correo</strong>',
+    icon: 'info',
+    html:
+    `
+    <div class="form-group">
+
+    <input type="email" class="form-control" id="email_user" placeholder="name@example.com">
+  </div>
+
+    
+    
+    `,
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText:
+      '<i class="fa fa-envelope-ope"></i> Enviar email',
+    confirmButtonAriaLabel: 'Enviar',
+    cancelButtonText:
+      '<i class="fa fa-thumbs-down"></i>',
+    cancelButtonAriaLabel: 'Cancelar'
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+     
+
+        if($("email_user").val()==''){
+          Swal.fire('Ingrese un correo valido', '', 'info')
+        }else{
+          $('.buttons').hide();
+
+          var contenidoPDF = '';
+         if(!procesado){ 
+          var canvas = document.getElementById('myChart');
+          var chartImage = canvas.toDataURL();
+          chartImage = '<img with="40%" src="' + chartImage + '" >';
+          $(".imagen-grafico").html(chartImage);
+          
+          var canvas_costo_promedio = document.getElementById('chart_costo_promedio');
+          var chartImageCosto_promedio  = canvas_costo_promedio.toDataURL();
+          chartImageCosto_promedio = '<img with="40%" src="' + chartImageCosto_promedio + '" >';
+          $(".imagen-grafico-costo").html(chartImageCosto_promedio);
+          
+          
+          var canvas_plan_promedio = document.getElementById('chartplanfinanciero');
+          var chartImageplan  = canvas_plan_promedio.toDataURL();
+          chartImageplan = '<img with="40%" src="' + chartImageplan + '" >';
+          $(".imagen-grafico-chartplanfinanciero").html(chartImageplan);
+        }
+          
+          // Iterar a través de cada etiqueta <fieldset> y agregar su contenido a la variable
+          $('.imprimirpdf').each(function() {
+            contenidoPDF += '<div style="page-break-after:always">' + $(this).html() + '</div>';
+          });
+       
+          procesado=true
+         // enviar(contenidoPDF)
+        }
+
+    } else if (result.isDenied) {
+
+    }
+  })
+
+
+}
+
+function enviar(html) {
+  var destinatario = "correo_ejemplo@ejemplo.com";
+
+// Crea un objeto con los datos que enviarás a la API de SendGrid
+var data = {"accion": "send_mail",
+ "correo": "jhonatanrojasmd@gmail.com",
+  "contenidohtml": html,
+   "asunto": "Asunto del correo", "nombre_cliente": "", 
+"token": "F1A17B7D-3E3A3A77"};
+  $.ajax({
+    type: "POST",
+    url: "procesar.php",
+      data: data,
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(error) {
+      console.error("Error al enviar el correo electrónico: ", error);
+    }
+  });
+  
+  
+  
   
 }
