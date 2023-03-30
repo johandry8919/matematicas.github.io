@@ -488,13 +488,6 @@ function nextForm() {
 
     var valor_beneficio = parseInt(document.querySelector("#valor_beneficio_promedio").value);
 
-
-    console.log(valor_beneficio);
-
-    
-
-   
-
     
     if (sueldo_promedio_base == "" || valor_beneficio == "") {
       Swal.fire({
