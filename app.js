@@ -486,10 +486,17 @@ function nextForm() {
     const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
     var sueldo_promedio_base = parseInt(document.querySelector("#sueldo_promedio").value);
 
-    console.log(sueldo_promedio_base)
+    var valor_beneficio = parseInt(document.querySelector("#valor_beneficio_promedio").value);
+
+
+    console.log(valor_beneficio);
 
     
-    if (sueldo_promedio_base == "" || isNaN(sueldo_promedio_base)) {
+
+   
+
+    
+    if (sueldo_promedio_base == "" || valor_beneficio == "") {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -498,7 +505,7 @@ function nextForm() {
       })
       viewId--;
       return false;
-    } else if (isNaN(sueldo_promedio_base)) {
+    } else if (isNaN(sueldo_promedio_base) || isNaN(valor_beneficio)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
