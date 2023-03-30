@@ -40,9 +40,9 @@
        
             <div class="title__container">
                 <h1>Matematicas para restaurantes</h1>
-                <p>Conviértete en un experto en la gestión financiera de tu restaurante</p>
+                <p class="text-dark">Conviértete en un experto en la gestión financiera de tu restaurante</p>
                 <div id="emoji-container">
-                    <div id="emoji" class="animate__animated    animate__shakeY"></div>
+                    <div id="emoji" class=""></div>
                     <div id="emoji-text"></div>
                   </div>
             </div>
@@ -50,43 +50,43 @@
         </div>
             <div class="body__container">
                 <div class="left__container">
-                    <div class="side__titles">
+                    <div class="side__titles ">
                         <div class="title__name">
                             <h3 class="In">Utilidad</h3>
-                            <p class="In">Meta de ingresos mensuales</p>
+                            <p class="In text-dark">Meta de ingresos mensuales</p>
                         </div>
                         <div class="title__name">
                             <h3>Tenedor promedio</h3>
-                            <p> valor promedio de consumo por cliente </p>
+                            <p class="In text-dark"> valor promedio de consumo por cliente </p>
                         </div>
                         <div class="title__name">
                             <h3>Objetivos de clientes</h3>
-                            <p> Calculo de clientes por dia</p>
+                            <p class="In text-dark"> Calculo de clientes por dia</p>
                         </div>
                         <div class="title__name">
                             <h3>Resumen del plan</h3>
-                            <p>  Tenedor promedio -Clientes semanales</p>
+                            <p class="In text-dark">  Tenedor promedio -Clientes semanales</p>
                           </div>
                         <div class="title__name">
                             <h3>Porcentaje de costo </h3>
-                            <p>Costos de tu restaurant</p>
+                            <p class="In text-dark">Costos de tu restaurant</p>
                         </div>
-                        <div class="title__name">
+                        <div class="title__name  text-dark">
                             <h3>Sueldo mensual típico </h3>
-                            <p>Salario de empleado</p>
+                            <p class="In text-dark">Salario de empleado</p>
                         </div>
-                        <div class="title__name">
+                        <div class="title__name  text-dark">
                             <h3>Cantidad de personal</h3>
-                            <p>proyectar cantidad de empleados</p>
+                            <p class="In text-dark">proyectar cantidad de empleados</p>
                         </div>
-                        <div class="title__name">
+                        <div class="title__name  ">
                             <h3>Gastos generales</h3>
-                            <p>Clacula tus gatos</p>
+                            <p class="text-dark">Clacula tus gatos</p>
                    
                         </div>
                         <div class="title__name">
                             <h3>Plan financiero</h3>
-                            <p>Listo</p>
+                            <p class="text-dark">Listo</p>
                         </div>
                        
                     </div>
@@ -141,7 +141,7 @@
                          
                             <h2 class="">¿Cuánto quieres de utilidad en tu establecimiento 
                                 al mes?</h2>
-                            <p class="animate__lightSpeedInRight">Ingresa tu objetivo de ingresos mensual</p>
+                            <p class="animate__lightSpeedInRight text-dark">Ingresa tu objetivo de ingresos mensual</p>
                         </div>
     
                         <div class="input__container  ">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="objetivo_mensual" >
-                            <a class="nxt__btn btn btn-info text-white float-right" onclick="nextForm();"> Siguiente</a>
+                            <a class="nxt__btn btn btn-info text-white m-auto" onclick="nextForm();"> Siguiente</a>
                         </div>
                         <p class="text-center page">Pag 1/9</p>
                     </fieldset>
@@ -177,7 +177,7 @@
                         <div class="sub__title__container">
                         
                             <h2>Para  llegar a $<span class="valor_ganancia"></span> de utilidad al mes, tu Establecimiento debe vender $<span class="valor_venta"></span>  al mes.</h2>
-                            <p> Para entender cómo llegas a $<span class="valor_ganancia2"></span> de utlidad al mes, puedes manejar el tenedor “promedio de
+                            <p class="text-dark"> Para entender cómo llegas a $<span class="valor_ganancia2"></span> de utlidad al mes, puedes manejar el tenedor “promedio de
                                 tu carta”. Cambia el valor en promedio que consume un cliente en tu local por cada
                                 visita cambiando el “tenedor promedio” aquí abajo.
                             </p>
@@ -196,7 +196,7 @@
                                             </button>
                                         </span>
                                         <input type="text" class="form-control text-center" 
-                                          id="tenedor_promedio" value="10">
+                                          id="tenedor_promedio" value="">
                                         <span class="input-group-btn">
                                             <button class="btn  btn-info text-white"  data-dir="dwn"  >
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
@@ -209,18 +209,18 @@
                             </div>
                            
     
-                            <div class="buttons">
+                            <div class="buttons ">
                                 <a class="prev__btn btn btn btn-secondary" onclick="prevForm();">Regresar</a>
                                 <a class="nxt__btn btn-info text-white" onclick="nextForm();">Siguiente</a>
                             </div>
                             <p class="text-center page">Pag 2/9</p>
                         </div>
                     </fieldset>
-                    <fieldset class="active__form fieldsetform animate__animated " id="form3"  >
+                    <fieldset style="display:none;" class="active__form fieldsetform animate__animated " id="form3"  >
                         <div class="sub__title__container">
                            
                             <h2>Objetivos por dia</h2>
-                            <p>En base a tu tenedor promedio, hemos calculado cuantos clientes debes atender cada
+                            <p class="text-dark">En base a tu tenedor promedio, hemos calculado cuantos clientes debes atender cada
                                 día de la semana para que llegues al objetivo. Ajusta los valores para reflejar mejor la
                                 realidad de tu plan de Establecimiento.
                             </p>
@@ -848,7 +848,7 @@
                         <div class="sub__title__container">
              
                             <h2>Tu plan actual</h2>
-                            <p>Para entender cómo llegas a $<span class="valor_ganancia3"></span> al mes, puedes manejar el tenedor promedio de
+                            <p class="text-dark">Para entender cómo llegas a $<span class="valor_ganancia3"></span> al mes, puedes manejar el tenedor promedio de
                                 tu carta y el volumen de personas que atiendes por dia en tu local. Aquí abajo puedes
                                 simular esto y ver el resultado. </p>
                         </div>
@@ -856,7 +856,541 @@
                         
                         <div class="input__container" >
                          
-                            <div class="row " >
+                            <div class="row  align-items-center" >
+
+                                <div class=" col-xs-12 col-md-4 ">
+                                    
+                                    <div class="row" style="height: 22%">
+                                        <div class="col-md-12">
+                                       
+                                                    <div class="pt-input-group">
+            
+                                                 
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input type="number" class="form-control" readonly id="sumaTotal2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                                                                                                 <span class="input-group-text" id="basic-addon1" style="font-size:0.75rem">  % de clientes semanales</span>
+    
+                                                        </div>
+                                                    </div>
+            
+                                                 
+                                            
+                                        </div>
+                                       
+                                            </div>
+                                            
+                                        <table style="padding-bottom: 0px;" class="table">
+                                            <thead>
+                                                <th></th>
+                                                <th>Clientes por dia</th>
+                                                <th> % de clientes a la semana</th>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="L">Lunes</td>
+                                                     <td data-label="Client x dia"> 
+                
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                   
+                                                                <input
+                                                                    id="clientes_c1"
+                                                                    class="tick-slider-pag-4 form-control"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    value="100"
+                                                                    data-id="1"
+                
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc1"
+                                                                    data-value-id="weightValuec1"
+                                                                    data-progress-id="weightProgressc1"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc1"
+                                                                    data-max-label-id="weightLabelMaxc1"
+                                                                />
+                                                            </div>
+                                                        </div>
+                
+                                                    
+                                                    
+                                                    </td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                
+                                                            
+                                                            <div class="tick-slider">
+                                                       
+                                                                <input
+                                                                
+                                                                    id="porcentaje_c1"
+                                                                    class="tick-slider-pag-3 " 
+                                                                    type="number"
+                                                                    min="0"
+                                                                    data-id="1"
+                                                                    max="100"
+                                                                    step="5"
+                                                                    value="20"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicks"
+                                                                    data-value-id="weightValue"
+                                                                    data-progress-id="weightProgress"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMin"
+                                                                    data-max-label-id="weightLabelMax"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                   
+                                                </tr>
+                
+                                                <tr>
+                                                    <td data-label="M">Martes</td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                            
+                                                          
+                                                                <input
+                                                                    id="porcentaje_c2"
+                                                                    class="tick-slider-pag-3"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="100"
+                                                                    step="5"
+                                                                    value="20"
+                                                                    data-id="2"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicks2"
+                                                                    data-value-id="weightValue2"
+                                                                    data-progress-id="weightProgress"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMin2"
+                                                                    data-max-label-id="weightLabelMax2"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                    <td data-label="Client x dia">
+                                                        
+                                                   
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                               
+                                                              
+                                                           
+                                                                <input
+                                                                    id="clientes_c2"
+                                                                    class="tick-slider-pag-4"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    value="100"
+                                                                    data-id="2"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc2"
+                                                                    data-value-id="weightValuec2"
+                                                                    data-progress-id="weightProgressc2"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc2"
+                                                                    data-max-label-id="weightLabelMaxc2"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    
+                                                    </td>
+                                                </tr>
+                
+                
+                                                <tr>
+                                                    <td data-label="M">Miercoles</td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="pt-input-group">
+                
+                                                                <div class="tick-slider">
+                                                                
+                                                                   
+                                                                  
+                                                                    <input
+                                                                        id="porcentaje_c3"
+                                                                        class="tick-slider-pag-3"
+                                                                        type="number"
+                                                                        min="0"
+                                                                        max="100"
+                                                                        step="5"
+                                                                        value="20"
+                                                                        data-id="3"
+                                                                        data-tick-step="5"
+                                                                        data-tick-id="weightTicks3"
+                                                                        data-value-id="weightValue3"
+                                                                        data-progress-id="weightProgress"
+                                                                        data-handle-size="18"
+                                                                        data-min-label-id="weightLabelMin3"
+                                                                        data-max-label-id="weightLabelMax3"
+                                                                        readonly
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                    <td data-label="Client x dia"> 
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                                
+                                                              
+                                                                <input
+                                                                    id="clientes_c3"
+                                                                    class="tick-slider-pag-4"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    data-id="3"
+                                                                    value="100"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc3"
+                                                                    data-value-id="weightValuec3"
+                                                                    data-progress-id="weightProgressc3"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc3"
+                                                                    data-max-label-id="weightLabelMaxc3"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    
+                                                    </td>
+                                                </tr>
+                
+                
+                                                <tr>
+                                                    <td data-label="J">Jueves</td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="pt-input-group">
+                
+                                                                <div class="tick-slider">
+                                                                
+                                                                 
+                                                                    <input
+                                                                        id="porcentaje_c4"
+                                                                        class="tick-slider-pag-3"
+                                                                        type="number"
+                                                                        min="0"
+                                                                        max="100"
+                                                                        step="5"
+                                                                        data-id="4"
+                                                                        value="20"
+                                                                        data-tick-step="5"
+                                                                        data-tick-id="weightTicks4"
+                                                                        data-value-id="weightValue4"
+                                                                        data-progress-id="weightProgress"
+                                                                        data-handle-size="18"
+                                                                        data-min-label-id="weightLabelMin4"
+                                                                        data-max-label-id="weightLabelMax4"
+                                                                        readonly
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                    <td data-label="Client x dia"> 
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                                
+                                                                
+                                                                <input
+                                                                    id="clientes_c4"
+                                                                    class="tick-slider-pag-4"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    value="100"
+                                                                    data-id="4"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc4"
+                                                                    data-value-id="weightValuec4"
+                                                                    data-progress-id="weightProgressc4"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc4"
+                                                                    data-max-label-id="weightLabelMaxc4"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    </td>
+                                                </tr>
+                
+                
+                                                <tr>
+                                                    <td data-label="V">Viernes</td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                                                            <div class="pt-input-group">
+                
+                                                                <div class="tick-slider">
+                                                                
+                                                                 
+                                                                    <input
+                                                                        id="porcentaje_c5"
+                                                                        class="tick-slider-pag-3"
+                                                                        type="number"
+                                                                        min="0"
+                                                                        max="100"
+                                                                        step="5"
+                                                                        value="20"
+                                                                        data-id="5"
+                                                                        data-tick-step="5"
+                                                                        data-tick-id="weightTicks5"
+                                                                        data-value-id="weightValue5"
+                                                                        data-progress-id="weightProgress5"
+                                                                        data-handle-size="18"
+                                                                        data-min-label-id="weightLabelMin5"
+                                                                        data-max-label-id="weightLabelMax5"
+                                                                        readonly
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                    <td data-label="Client x dia">
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                               
+                                                                
+                                                                <input
+                                                                    id="clientes_c5"
+                                                                    class="tick-slider-pag-4"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    value="100"
+                                                                    data-id="5"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc5"
+                                                                    data-value-id="weightValuec5"
+                                                                    data-progress-id="weightProgressc5"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc5"
+                                                                    data-max-label-id="weightLabelMaxc5"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        </td>
+                                                </tr>
+                
+                                                
+                                                <tr>
+                                                    <td data-label="S">Sabado</td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="pt-input-group">
+                                                                <div class="pt-input-group">
+                    
+                                                                    <div class="tick-slider">
+                                                                    
+                                                                     
+                                                                        <input
+                                                                            id="porcentaje_c6"
+                                                                            class="tick-slider-pag-3"
+                                                                            type="number"
+                                                                            min="0"
+                                                                            max="100"
+                                                                            step="5"
+                                                                            data-id="6"
+                                                                            value="0"
+                                                                            data-tick-step="5"
+                                                                            data-tick-id="weightTicks6"
+                                                                            data-value-id="weightValue6"
+                                                                            data-progress-id="weightProgress6"
+                                                                            data-handle-size="18"
+                                                                            data-min-label-id="weightLabelMin6"
+                                                                            data-max-label-id="weightLabelMax6"
+                                                                            readonly
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                    <td data-label="Client x dia"> 
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                              
+                                                                <input
+                                                                    id="clientes_c6"
+                                                                    class="tick-slider-pag-4"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    data-id="6"
+                                                                    value="0"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc6"
+                                                                    data-value-id="weightValuec6"
+                                                                    data-progress-id="weightProgressc6"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc6"
+                                                                    data-max-label-id="weightLabelMaxc6"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    
+                                                    </td>
+                                                </tr>
+                
+                                                 
+                                                <tr>
+                                                    <td data-label="D">Domingo</td>
+                                                    <td data-label="%">
+                
+                
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="pt-input-group">
+                                                                <div class="pt-input-group">
+                    
+                                                                    <div class="tick-slider">
+                                                                    
+                                                                   
+                                                                        <input
+                                                                            id="porcentaje_c7"
+                                                                            class="tick-slider-pag-3"
+                                                                            type="number"
+                                                                            min="0"
+                                                                            max="100"
+                                                                            step="5"
+                                                                            value="0"
+                                                                            data-id="7"
+                                                                            data-tick-step="5"
+                                                                            data-tick-id="weightTicks7"
+                                                                            data-value-id="weightValue7"
+                                                                            data-progress-id="weightProgress7"
+                                                                            data-handle-size="18"
+                                                                            data-min-label-id="weightLabelMin7"
+                                                                            data-max-label-id="weightLabelMax7"
+                                                                            readonly
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                
+                                                    </td>
+                                                    <td data-label="Client x dia"> 
+                                                        <div class="pt-input-group">
+                
+                                                            <div class="tick-slider">
+                                                            
+                                                   
+                                                                <input
+                                                                    id="clientes_c7"
+                                                                    class="tick-slider-pag-4"
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="500"
+                                                                    step="5"
+                                                                    value="0"
+                                                                    data-id="7"
+                                                                    data-tick-step="5"
+                                                                    data-tick-id="weightTicksc7"
+                                                                    data-value-id="weightValuec7"
+                                                                    data-progress-id="weightProgressc7"
+                                                                    data-handle-size="18"
+                                                                    data-min-label-id="weightLabelMinc7"
+                                                                    data-max-label-id="weightLabelMaxc7"
+                                                                    readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    
+                                                    </td>
+                                                </tr>
+                                                    
+                                           
+                
+                
+                
+                
+                
+                                            </tbody>
+                                        </table>
+
+                                        <div class="">
+                                            
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                </div>
+                                                <input type="number"  class="form-control" id="clienttotal2" placeholder="0" aria-label="" aria-describedby="basic-addon1">
+                                                <span class="input-group-text" id="basic-addon1"  style="font-size:0.75rem">Total clientes semanales</span>
+    
+                                            </div>
+                                              
+                                        </div>
+                                    </div>
                                 <div class=" col-xs-12 col-md-8 ">
                                         <div class="row justify-content-center align-items-lg-center" style="height:15%" >
 
@@ -872,7 +1406,7 @@
                                                 </button>
                                             </span>
                                             <input type="text" class="form-control text-center" 
-                                              id="tenedor_promedio2" value="100">
+                                              id="tenedor_promedio2" value="">
                                             <span class="input-group-btn">
                                                 <button onclick="click_tenedor_promedio() "  class="btn  btn-info text-white"  data-dir="dwn"  >
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
@@ -893,522 +1427,7 @@
                             
                                 </div>
                                                     
-                                <div class=" col-xs-12 col-md-4 ">
-                                    
-                                <div class="row" style="height: 22%">
-                                    <div class="col-md-12">
-                                   
-                                                <div class="pt-input-group">
-        
-                                             
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                        </div>
-                                                        <input type="number" class="form-control" readonly id="sumaTotal2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                                                                                                             <span class="input-group-text" id="basic-addon1" style="font-size:0.75rem">  % de clientes semanales</span>
-
-                                                    </div>
-                                                </div>
-        
-                                             
-                                        
-                                    </div>
-                                    <div class="col-md-12">
-                                        
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                            </div>
-                                            <input type="number"  class="form-control" id="clienttotal2" placeholder="0" aria-label="" aria-describedby="basic-addon1">
-                                            <span class="input-group-text" id="basic-addon1"  style="font-size:0.75rem">Total clientes semanales</span>
-
-                                        </div>
-                                          
-                                    </div>
-                                        </div>
-                                        
-                                    <table class="table">
-                                        <thead>
-                                            <th></th>
-                                            <th> % de clientes a la semana</th>
-                                            <th>Clientes por dia</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td data-label="L">Lunes</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        
-                                                        <div class="tick-slider">
-                                                   
-                                                            <input
-                                                            
-                                                                id="porcentaje_c1"
-                                                                class="tick-slider-pag-3  form-control" 
-                                                                type="number"
-                                                                min="0"
-                                                                data-id="1"
-                                                                max="100"
-                                                                step="5"
-                                                                value="20"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicks"
-                                                                data-value-id="weightValue"
-                                                                data-progress-id="weightProgress"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMin"
-                                                                data-max-label-id="weightLabelMax"
-                                                            />
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia"> 
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                               
-                                                            <input
-                                                                id="clientes_c1"
-                                                                class="tick-slider-pag-4 form-control"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                value="100"
-                                                                data-id="1"
-            
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc1"
-                                                                data-value-id="weightValuec1"
-                                                                data-progress-id="weightProgressc1"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc1"
-                                                                data-max-label-id="weightLabelMaxc1"
-                                                            />
-                                                        </div>
-                                                    </div>
-            
-                                                
-                                                
-                                                </td>
-                                            </tr>
-            
-                                            <tr>
-                                                <td data-label="M">Martes</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                                        
-                                                      
-                                                            <input
-                                                                id="porcentaje_c2"
-                                                                class="tick-slider-pag-3"
-                                                                type="number"
-                                                                min="0"
-                                                                max="100"
-                                                                step="5"
-                                                                value="20"
-                                                                data-id="2"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicks2"
-                                                                data-value-id="weightValue2"
-                                                                data-progress-id="weightProgress"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMin2"
-                                                                data-max-label-id="weightLabelMax2"
-                                                            />
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia">
-                                                    
-                                               
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                                           
-                                                          
-                                                       
-                                                            <input
-                                                                id="clientes_c2"
-                                                                class="tick-slider-pag-4"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                value="100"
-                                                                data-id="2"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc2"
-                                                                data-value-id="weightValuec2"
-                                                                data-progress-id="weightProgressc2"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc2"
-                                                                data-max-label-id="weightLabelMaxc2"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                
-                                                
-                                                </td>
-                                            </tr>
-            
-            
-                                            <tr>
-                                                <td data-label="M">Miercoles</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="pt-input-group">
-            
-                                                            <div class="tick-slider">
-                                                            
-                                                               
-                                                              
-                                                                <input
-                                                                    id="porcentaje_c3"
-                                                                    class="tick-slider-pag-3"
-                                                                    type="number"
-                                                                    min="0"
-                                                                    max="100"
-                                                                    step="5"
-                                                                    value="20"
-                                                                    data-id="3"
-                                                                    data-tick-step="5"
-                                                                    data-tick-id="weightTicks3"
-                                                                    data-value-id="weightValue3"
-                                                                    data-progress-id="weightProgress"
-                                                                    data-handle-size="18"
-                                                                    data-min-label-id="weightLabelMin3"
-                                                                    data-max-label-id="weightLabelMax3"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia"> 
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                                            
-                                                          
-                                                            <input
-                                                                id="clientes_c3"
-                                                                class="tick-slider-pag-4"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                data-id="3"
-                                                                value="100"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc3"
-                                                                data-value-id="weightValuec3"
-                                                                data-progress-id="weightProgressc3"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc3"
-                                                                data-max-label-id="weightLabelMaxc3"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                
-                                                
-                                                </td>
-                                            </tr>
-            
-            
-                                            <tr>
-                                                <td data-label="J">Jueves</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="pt-input-group">
-            
-                                                            <div class="tick-slider">
-                                                            
-                                                             
-                                                                <input
-                                                                    id="porcentaje_c4"
-                                                                    class="tick-slider-pag-3"
-                                                                    type="number"
-                                                                    min="0"
-                                                                    max="100"
-                                                                    step="5"
-                                                                    data-id="4"
-                                                                    value="20"
-                                                                    data-tick-step="5"
-                                                                    data-tick-id="weightTicks4"
-                                                                    data-value-id="weightValue4"
-                                                                    data-progress-id="weightProgress"
-                                                                    data-handle-size="18"
-                                                                    data-min-label-id="weightLabelMin4"
-                                                                    data-max-label-id="weightLabelMax4"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia"> 
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                                            
-                                                            
-                                                            <input
-                                                                id="clientes_c4"
-                                                                class="tick-slider-pag-4"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                value="100"
-                                                                data-id="4"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc4"
-                                                                data-value-id="weightValuec4"
-                                                                data-progress-id="weightProgressc4"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc4"
-                                                                data-max-label-id="weightLabelMaxc4"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                
-                                                </td>
-                                            </tr>
-            
-            
-                                            <tr>
-                                                <td data-label="V">Viernes</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-                                                        <div class="pt-input-group">
-            
-                                                            <div class="tick-slider">
-                                                            
-                                                             
-                                                                <input
-                                                                    id="porcentaje_c5"
-                                                                    class="tick-slider-pag-3"
-                                                                    type="number"
-                                                                    min="0"
-                                                                    max="100"
-                                                                    step="5"
-                                                                    value="20"
-                                                                    data-id="5"
-                                                                    data-tick-step="5"
-                                                                    data-tick-id="weightTicks5"
-                                                                    data-value-id="weightValue5"
-                                                                    data-progress-id="weightProgress5"
-                                                                    data-handle-size="18"
-                                                                    data-min-label-id="weightLabelMin5"
-                                                                    data-max-label-id="weightLabelMax5"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia">
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                                           
-                                                            
-                                                            <input
-                                                                id="clientes_c5"
-                                                                class="tick-slider-pag-4"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                value="100"
-                                                                data-id="5"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc5"
-                                                                data-value-id="weightValuec5"
-                                                                data-progress-id="weightProgressc5"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc5"
-                                                                data-max-label-id="weightLabelMaxc5"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    </td>
-                                            </tr>
-            
-                                            
-                                            <tr>
-                                                <td data-label="S">Sabado</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="pt-input-group">
-                                                            <div class="pt-input-group">
-                
-                                                                <div class="tick-slider">
-                                                                
-                                                                 
-                                                                    <input
-                                                                        id="porcentaje_c6"
-                                                                        class="tick-slider-pag-3"
-                                                                        type="number"
-                                                                        min="0"
-                                                                        max="100"
-                                                                        step="5"
-                                                                        data-id="6"
-                                                                        value="0"
-                                                                        data-tick-step="5"
-                                                                        data-tick-id="weightTicks6"
-                                                                        data-value-id="weightValue6"
-                                                                        data-progress-id="weightProgress6"
-                                                                        data-handle-size="18"
-                                                                        data-min-label-id="weightLabelMin6"
-                                                                        data-max-label-id="weightLabelMax6"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia"> 
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                                          
-                                                            <input
-                                                                id="clientes_c6"
-                                                                class="tick-slider-pag-4"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                data-id="6"
-                                                                value="0"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc6"
-                                                                data-value-id="weightValuec6"
-                                                                data-progress-id="weightProgressc6"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc6"
-                                                                data-max-label-id="weightLabelMaxc6"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                
-                                                
-                                                </td>
-                                            </tr>
-            
-                                             
-                                            <tr>
-                                                <td data-label="D">Domingo</td>
-                                                <td data-label="%">
-            
-            
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="pt-input-group">
-                                                            <div class="pt-input-group">
-                
-                                                                <div class="tick-slider">
-                                                                
-                                                               
-                                                                    <input
-                                                                        id="porcentaje_c7"
-                                                                        class="tick-slider-pag-3"
-                                                                        type="number"
-                                                                        min="0"
-                                                                        max="100"
-                                                                        step="5"
-                                                                        value="0"
-                                                                        data-id="7"
-                                                                        data-tick-step="5"
-                                                                        data-tick-id="weightTicks7"
-                                                                        data-value-id="weightValue7"
-                                                                        data-progress-id="weightProgress7"
-                                                                        data-handle-size="18"
-                                                                        data-min-label-id="weightLabelMin7"
-                                                                        data-max-label-id="weightLabelMax7"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-            
-            
-                                                </td>
-                                                <td data-label="Client x dia"> 
-                                                    <div class="pt-input-group">
-            
-                                                        <div class="tick-slider">
-                                                        
-                                               
-                                                            <input
-                                                                id="clientes_c7"
-                                                                class="tick-slider-pag-4"
-                                                                type="number"
-                                                                min="0"
-                                                                max="500"
-                                                                step="5"
-                                                                value="0"
-                                                                data-id="7"
-                                                                data-tick-step="5"
-                                                                data-tick-id="weightTicksc7"
-                                                                data-value-id="weightValuec7"
-                                                                data-progress-id="weightProgressc7"
-                                                                data-handle-size="18"
-                                                                data-min-label-id="weightLabelMinc7"
-                                                                data-max-label-id="weightLabelMaxc7"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                
-                                                
-                                                </td>
-                                            </tr>
-                                                
-                                       
-            
-            
-            
-            
-            
-                                        </tbody>
-                                    </table>
-                                </div>
+                               
                                 
                               
                                                
@@ -1427,7 +1446,7 @@
                   
                             <h2>¿Cuál es el porcentaje de costo en tu Establecimiento?
                             </h2>
-                            <p>El porcentaje de costo es el porcentaje del precio de venta de tus productos que usas en
+                            <p class="text-dark">El porcentaje de costo es el porcentaje del precio de venta de tus productos que usas en
                                 matería prima. Por ejemplo si vendes tu plato promedio en <span class="tenedor_promedio_p9"></span>, y el costo de los
                                 componentes es $4.00; tu porcetaje de costo es del 40%. Por lo general este indicador
                                 es del 35% o menos. </p>
@@ -1487,7 +1506,7 @@
                             <h2>¿Cuánto es el sueldo mensual típico en tu localidad para un
                                 cajero/mesero?
                             </h2>
-                            <p>Ingresa el valor que se paga en tu país para un mesero o cajero tipicamente en los
+                            <p class="text-dark">Ingresa el valor que se paga en tu país para un mesero o cajero tipicamente en los
                                 cuadros aquí abajo.  </p>
                         </div>
     
@@ -1504,7 +1523,7 @@
                                             </button>
                                         </span>
                                         <input type="text" class="form-control text-center" 
-                                          id="sueldo_promedio" value="200" >
+                                          id="sueldo_promedio" value="" >
                                         <span class="input-group-btn">
                                             <button class="btn  btn-info text-white"  data-dir="dwn"  >
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
@@ -1558,7 +1577,7 @@
                             <h2>Ahora exploremos la cantidad de personal que necesitas. 
 
                             </h2>
-                            <p>De acuerdo a tu objetivo de ventas y a los estándar de la industria, puedes gastar hasta
+                            <p class="text-dark">De acuerdo a tu objetivo de ventas y a los estándar de la industria, puedes gastar hasta
                                 $<span class="valor_ganancia4"></span> en personal cada mes. Usa la siguiente tabla para proyectar la cantidad de
                                 empleados del Establecimiento. 
                                   </p>
@@ -1880,7 +1899,7 @@
                             <h2>Finalmente, validemos como están tus gastos generales
 
                             </h2>
-                            <p>Aquí calculamos los pagos que haces en gastos generales para mantener el negocio en
+                            <p class="text-dark">Aquí calculamos los pagos que haces en gastos generales para mantener el negocio en
                                 marcha. 
                                   </p>
                         </div>
@@ -2024,7 +2043,7 @@
              
                             <h2>!Listo! Mira el plan financiero de tu Establecimiento.
                             </h2>
-                            <p>Hemos generado con tus datos, el plan financiero/matemático de tu Establecimiento. Puedes
+                            <p class="text-dark">Hemos generado con tus datos, el plan financiero/matemático de tu Establecimiento. Puedes
                                 explorar el plan dando click en cada sección del grafico. Adicionalmente puedes exportarlo a
                                 PDF o generar una cuenta gratuita para grabarlo y hacer seguimiento de su cumplimiento. 
                                  </p>

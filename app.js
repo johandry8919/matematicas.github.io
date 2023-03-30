@@ -239,15 +239,15 @@ const ctx_costo_promedio = document
   
 
 const chartDatactcosto_promedio = {
-  labels: ["Objetivo y Costo"],
+  labels: ["Costo Plan y Costo Industria"],
   datasets: [
     {
-      label: "Objetivo",
+      label: "% de Costo Plan",
       data: [porcentajeObjetivo],
       backgroundColor: "rgba(75, 192, 192, 0.5)",
     },
     {
-      label: "Costo",
+      label: "%Costo Industria",
       data: [porcentajeCosto],
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
@@ -473,7 +473,7 @@ function nextForm() {
     const clienttotal = document.querySelector("#clienttotal2").value;
     const meta_alcanzada = clienttotal * consumoPromedio * SEMANAS_MES;
   document.querySelector("#objetivo_mensual").value=Math.round(meta_alcanzada);
-  document.querySelector(".tenedor_promedio_p9").innerHTML='$'+consumoPromedio;
+  document.querySelector(".tenedor_promedio_p9").innerHTML= consumoPromedio +'0%';
   
   }
 
@@ -481,8 +481,38 @@ function nextForm() {
      * PASO 7
      */
   else if (viewId === 7) {
+
+   
     const metaVentasMensual = document.querySelector("#objetivo_mensual").value;
     var sueldo_promedio_base = parseInt(document.querySelector("#sueldo_promedio").value);
+
+    console.log(sueldo_promedio_base)
+
+    
+    if (sueldo_promedio_base == "" || isNaN(sueldo_promedio_base)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo  es requerido',
+ 
+      })
+      viewId--;
+      return false;
+    } else if (isNaN(sueldo_promedio_base)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo debe ser un numero',
+ 
+      })
+      viewId--;
+      return false;
+    } 
+
+    
+
+
+
     const valor_beneficio_promedio = parseInt(document.querySelector("#valor_beneficio_promedio").value);
     const input_gastos_empleados=  document.querySelector("#gastos_empleados");
     
