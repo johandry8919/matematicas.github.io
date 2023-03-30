@@ -489,7 +489,7 @@ function nextForm() {
     var valor_beneficio = parseInt(document.querySelector("#valor_beneficio_promedio").value);
 
     
-    if (sueldo_promedio_base == "" || valor_beneficio == "") {
+    if (isNaN(valor_beneficio) || isNaN(valor_beneficio)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -498,7 +498,7 @@ function nextForm() {
       })
       viewId--;
       return false;
-    } else if (isNaN(sueldo_promedio_base) || isNaN(valor_beneficio)) {
+    } else if (isNaN(sueldo_promedio_base)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
